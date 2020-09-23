@@ -1,0 +1,794 @@
+{
+  "name": "Example project",
+  "email": "example@example.com",
+  "timelines": [
+    {
+      "type": "timeline",
+      "tasks": [
+        {
+          "type": "VideoInstructionsTask"
+        },
+        {
+          "type": "QuestionnaireTask",
+          "form": {
+            "fields": [
+              {
+                "prompt": "Does the person in the video laugh?",
+                "input": {
+                  "type": "radio",
+                  "options": [
+                    "yes",
+                    "no"
+                  ]
+                }
+              },
+              {
+                "prompt": "What is the intensity of the laugh?",
+                "input": {
+                  "type": "radio",
+                  "options": [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7"
+                  ]
+                }
+              }
+            ]
+          },
+          "media": {
+            "type": "video",
+            "mute": false,
+            "autoplay": true,
+            "controls": true,
+            "url": "video/1_5_cam_2.mp4"
+          }
+        },
+        {
+          "type": "QuestionnaireTask",
+          "form": {
+            "fields": [
+              {
+                "prompt": "Does the person in the video laugh?",
+                "input": {
+                  "type": "radio",
+                  "options": [
+                    "yes",
+                    "no"
+                  ]
+                }
+              },
+              {
+                "prompt": "What is the intensity of the laugh?",
+                "input": {
+                  "type": "radio",
+                  "options": [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7"
+                  ]
+                }
+              }
+            ]
+          },
+          "media": {
+            "type": "video",
+            "mute": false,
+            "autoplay": true,
+            "controls": true,
+            "url": "video/1_45_cam_1.mp4"
+          }
+        },
+        {
+          "type": "QuestionnaireTask",
+          "form": {
+            "fields": [
+              {
+                "prompt": "Does the person in the video laugh?",
+                "input": {
+                  "type": "radio",
+                  "options": [
+                    "yes",
+                    "no"
+                  ]
+                }
+              },
+              {
+                "prompt": "What is the intensity of the laugh?",
+                "input": {
+                  "type": "radio",
+                  "options": [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7"
+                  ]
+                }
+              }
+            ]
+          },
+          "media": {
+            "type": "video",
+            "mute": false,
+            "autoplay": true,
+            "controls": true,
+            "url": "video/2_70_cam_1.mp4"
+          }
+        },
+        {
+          "type": "QuestionnaireTask",
+          "form": {
+            "fields": [
+              {
+                "prompt": "Does the person in the video laugh?",
+                "input": {
+                  "type": "radio",
+                  "options": [
+                    "yes",
+                    "no"
+                  ]
+                }
+              },
+              {
+                "prompt": "What is the intensity of the laugh?",
+                "input": {
+                  "type": "radio",
+                  "options": [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7"
+                  ]
+                }
+              }
+            ]
+          },
+          "media": {
+            "type": "video",
+            "mute": false,
+            "autoplay": true,
+            "controls": true,
+            "url": "video/1_50_cam_2.mp4"
+          }
+        },
+        {
+          "type": "QuestionnaireTask",
+          "form": {
+            "fields": [
+              {
+                "prompt": "Does the person in the video laugh?",
+                "input": {
+                  "type": "radio",
+                  "options": [
+                    "yes",
+                    "no"
+                  ]
+                }
+              },
+              {
+                "prompt": "What is the intensity of the laugh?",
+                "input": {
+                  "type": "radio",
+                  "options": [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7"
+                  ]
+                }
+              }
+            ]
+          },
+          "media": {
+            "type": "video",
+            "mute": false,
+            "autoplay": true,
+            "controls": true,
+            "url": "video/1_55_cam_1.mp4"
+          }
+        },
+        {
+          "type": "QuestionnaireTask",
+          "form": {
+            "fields": [
+              {
+                "prompt": "Does the person in the video laugh?",
+                "input": {
+                  "type": "radio",
+                  "options": [
+                    "yes",
+                    "no"
+                  ]
+                }
+              },
+              {
+                "prompt": "What is the intensity of the laugh?",
+                "input": {
+                  "type": "radio",
+                  "options": [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7"
+                  ]
+                }
+              }
+            ]
+          },
+          "media": {
+            "type": "video",
+            "mute": false,
+            "autoplay": true,
+            "controls": true,
+            "url": "video/2_72_cam_1.mp4"
+          }
+        },
+        {
+          "type": "QuestionnaireTask",
+          "form": {
+            "fields": [
+              {
+                "prompt": "Does the person in the video laugh?",
+                "input": {
+                  "type": "radio",
+                  "options": [
+                    "yes",
+                    "no"
+                  ]
+                }
+              },
+              {
+                "prompt": "What is the intensity of the laugh?",
+                "input": {
+                  "type": "radio",
+                  "options": [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7"
+                  ]
+                }
+              }
+            ]
+          },
+          "media": {
+            "type": "video",
+            "mute": false,
+            "autoplay": true,
+            "controls": true,
+            "url": "video/1_13_cam_1.mp4"
+          }
+        },
+        {
+          "type": "QuestionnaireTask",
+          "form": {
+            "fields": [
+              {
+                "prompt": "Does the person in the video laugh?",
+                "input": {
+                  "type": "radio",
+                  "options": [
+                    "yes",
+                    "no"
+                  ]
+                }
+              },
+              {
+                "prompt": "What is the intensity of the laugh?",
+                "input": {
+                  "type": "radio",
+                  "options": [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7"
+                  ]
+                }
+              }
+            ]
+          },
+          "media": {
+            "type": "video",
+            "mute": false,
+            "autoplay": true,
+            "controls": true,
+            "url": "video/1_44_cam_2.mp4"
+          }
+        },
+        {
+          "type": "QuestionnaireTask",
+          "form": {
+            "fields": [
+              {
+                "prompt": "Does the person in the video laugh?",
+                "input": {
+                  "type": "radio",
+                  "options": [
+                    "yes",
+                    "no"
+                  ]
+                }
+              },
+              {
+                "prompt": "What is the intensity of the laugh?",
+                "input": {
+                  "type": "radio",
+                  "options": [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7"
+                  ]
+                }
+              }
+            ]
+          },
+          "media": {
+            "type": "video",
+            "mute": false,
+            "autoplay": true,
+            "controls": true,
+            "url": "video/1_53_cam_2.mp4"
+          }
+        },
+        {
+          "type": "QuestionnaireTask",
+          "form": {
+            "fields": [
+              {
+                "prompt": "Does the person in the video laugh?",
+                "input": {
+                  "type": "radio",
+                  "options": [
+                    "yes",
+                    "no"
+                  ]
+                }
+              },
+              {
+                "prompt": "What is the intensity of the laugh?",
+                "input": {
+                  "type": "radio",
+                  "options": [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7"
+                  ]
+                }
+              }
+            ]
+          },
+          "media": {
+            "type": "video",
+            "mute": false,
+            "autoplay": true,
+            "controls": true,
+            "url": "video/1_45_cam_2.mp4"
+          }
+        },
+        {
+          "type": "QuestionnaireTask",
+          "form": {
+            "fields": [
+              {
+                "prompt": "Does the person in the video laugh?",
+                "input": {
+                  "type": "radio",
+                  "options": [
+                    "yes",
+                    "no"
+                  ]
+                }
+              },
+              {
+                "prompt": "What is the intensity of the laugh?",
+                "input": {
+                  "type": "radio",
+                  "options": [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7"
+                  ]
+                }
+              }
+            ]
+          },
+          "media": {
+            "type": "video",
+            "mute": false,
+            "autoplay": true,
+            "controls": true,
+            "url": "video/2_78_cam_4.mp4"
+          }
+        },
+        {
+          "type": "QuestionnaireTask",
+          "form": {
+            "fields": [
+              {
+                "prompt": "Does the person in the video laugh?",
+                "input": {
+                  "type": "radio",
+                  "options": [
+                    "yes",
+                    "no"
+                  ]
+                }
+              },
+              {
+                "prompt": "What is the intensity of the laugh?",
+                "input": {
+                  "type": "radio",
+                  "options": [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7"
+                  ]
+                }
+              }
+            ]
+          },
+          "media": {
+            "type": "video",
+            "mute": false,
+            "autoplay": true,
+            "controls": true,
+            "url": "video/1_54_cam_4.mp4"
+          }
+        },
+        {
+          "type": "QuestionnaireTask",
+          "form": {
+            "fields": [
+              {
+                "prompt": "Does the person in the video laugh?",
+                "input": {
+                  "type": "radio",
+                  "options": [
+                    "yes",
+                    "no"
+                  ]
+                }
+              },
+              {
+                "prompt": "What is the intensity of the laugh?",
+                "input": {
+                  "type": "radio",
+                  "options": [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7"
+                  ]
+                }
+              }
+            ]
+          },
+          "media": {
+            "type": "video",
+            "mute": false,
+            "autoplay": true,
+            "controls": true,
+            "url": "video/1_2_cam_2.mp4"
+          }
+        },
+        {
+          "type": "QuestionnaireTask",
+          "form": {
+            "fields": [
+              {
+                "prompt": "Does the person in the video laugh?",
+                "input": {
+                  "type": "radio",
+                  "options": [
+                    "yes",
+                    "no"
+                  ]
+                }
+              },
+              {
+                "prompt": "What is the intensity of the laugh?",
+                "input": {
+                  "type": "radio",
+                  "options": [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7"
+                  ]
+                }
+              }
+            ]
+          },
+          "media": {
+            "type": "video",
+            "mute": false,
+            "autoplay": true,
+            "controls": true,
+            "url": "video/1_12_cam_4.mp4"
+          }
+        },
+        {
+          "type": "QuestionnaireTask",
+          "form": {
+            "fields": [
+              {
+                "prompt": "Does the person in the video laugh?",
+                "input": {
+                  "type": "radio",
+                  "options": [
+                    "yes",
+                    "no"
+                  ]
+                }
+              },
+              {
+                "prompt": "What is the intensity of the laugh?",
+                "input": {
+                  "type": "radio",
+                  "options": [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7"
+                  ]
+                }
+              }
+            ]
+          },
+          "media": {
+            "type": "video",
+            "mute": false,
+            "autoplay": true,
+            "controls": true,
+            "url": "video/1_9_cam_2.mp4"
+          }
+        },
+        {
+          "type": "QuestionnaireTask",
+          "form": {
+            "fields": [
+              {
+                "prompt": "Does the person in the video laugh?",
+                "input": {
+                  "type": "radio",
+                  "options": [
+                    "yes",
+                    "no"
+                  ]
+                }
+              },
+              {
+                "prompt": "What is the intensity of the laugh?",
+                "input": {
+                  "type": "radio",
+                  "options": [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7"
+                  ]
+                }
+              }
+            ]
+          },
+          "media": {
+            "type": "video",
+            "mute": false,
+            "autoplay": true,
+            "controls": true,
+            "url": "video/1_12_cam_1.mp4"
+          }
+        },
+        {
+          "type": "QuestionnaireTask",
+          "form": {
+            "fields": [
+              {
+                "prompt": "Does the person in the video laugh?",
+                "input": {
+                  "type": "radio",
+                  "options": [
+                    "yes",
+                    "no"
+                  ]
+                }
+              },
+              {
+                "prompt": "What is the intensity of the laugh?",
+                "input": {
+                  "type": "radio",
+                  "options": [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7"
+                  ]
+                }
+              }
+            ]
+          },
+          "media": {
+            "type": "video",
+            "mute": false,
+            "autoplay": true,
+            "controls": true,
+            "url": "video/1_47_cam_1.mp4"
+          }
+        },
+        {
+          "type": "QuestionnaireTask",
+          "form": {
+            "fields": [
+              {
+                "prompt": "Does the person in the video laugh?",
+                "input": {
+                  "type": "radio",
+                  "options": [
+                    "yes",
+                    "no"
+                  ]
+                }
+              },
+              {
+                "prompt": "What is the intensity of the laugh?",
+                "input": {
+                  "type": "radio",
+                  "options": [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7"
+                  ]
+                }
+              }
+            ]
+          },
+          "media": {
+            "type": "video",
+            "mute": false,
+            "autoplay": true,
+            "controls": true,
+            "url": "video/1_9_cam_3.mp4"
+          }
+        },
+        {
+          "type": "QuestionnaireTask",
+          "form": {
+            "fields": [
+              {
+                "prompt": "Does the person in the video laugh?",
+                "input": {
+                  "type": "radio",
+                  "options": [
+                    "yes",
+                    "no"
+                  ]
+                }
+              },
+              {
+                "prompt": "What is the intensity of the laugh?",
+                "input": {
+                  "type": "radio",
+                  "options": [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7"
+                  ]
+                }
+              }
+            ]
+          },
+          "media": {
+            "type": "video",
+            "mute": false,
+            "autoplay": true,
+            "controls": true,
+            "url": "video/1_21_cam_1.mp4"
+          }
+        },
+        {
+          "type": "QuestionnaireTask",
+          "form": {
+            "fields": [
+              {
+                "prompt": "Does the person in the video laugh?",
+                "input": {
+                  "type": "radio",
+                  "options": [
+                    "yes",
+                    "no"
+                  ]
+                }
+              },
+              {
+                "prompt": "What is the intensity of the laugh?",
+                "input": {
+                  "type": "radio",
+                  "options": [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7"
+                  ]
+                }
+              }
+            ]
+          },
+          "media": {
+            "type": "video",
+            "mute": false,
+            "autoplay": true,
+            "controls": true,
+            "url": "video/1_2_cam_3.mp4"
+          }
+        }
+      ]
+    }
+  ]
+}
