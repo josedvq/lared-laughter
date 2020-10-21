@@ -1,3 +1,3 @@
 import VideoInstructionsTask from './video_instructions'
 
-export { VideoInstructionsTask }
+export default { 'VideoInstructionsTask': VideoInstructionsTask }

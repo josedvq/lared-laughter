@@ -1,19 +1,16 @@
 {
-  "name": "Example project",
+  "name": "Audio-only",
   "email": "example@example.com",
-  "timelines": [
+  "hits": [
     {
       "type": "timeline",
       "tasks": [
         {
-          "type": "VideoInstructionsTask"
-        },
-        {
           "type": "QuestionnaireTask",
           "form": {
             "fields": [
               {
-                "prompt": "Does the person in the video laugh?",
+                "prompt": "Does the person in the audio laugh?",
                 "input": {
                   "type": "radio",
                   "options": [
@@ -40,11 +37,11 @@
             ]
           },
           "media": {
-            "type": "video",
+            "type": "audio",
             "mute": false,
             "autoplay": true,
             "controls": true,
-            "url": "av/1_51_cam_1.mp4"
+            "url": "audio/1_5_cam_2.wav"
           }
         },
         {
@@ -52,7 +49,7 @@
           "form": {
             "fields": [
               {
-                "prompt": "Does the person in the video laugh?",
+                "prompt": "Does the person in the audio laugh?",
                 "input": {
                   "type": "radio",
                   "options": [
@@ -79,11 +76,11 @@
             ]
           },
           "media": {
-            "type": "video",
+            "type": "audio",
             "mute": false,
             "autoplay": true,
             "controls": true,
-            "url": "av/1_38_cam_1.mp4"
+            "url": "audio/1_45_cam_1.wav"
           }
         },
         {
@@ -91,7 +88,7 @@
           "form": {
             "fields": [
               {
-                "prompt": "Does the person in the video laugh?",
+                "prompt": "Does the person in the audio laugh?",
                 "input": {
                   "type": "radio",
                   "options": [
@@ -118,11 +115,11 @@
             ]
           },
           "media": {
-            "type": "video",
+            "type": "audio",
             "mute": false,
             "autoplay": true,
             "controls": true,
-            "url": "av/1_52_cam_3.mp4"
+            "url": "audio/2_70_cam_1.wav"
           }
         },
         {
@@ -130,7 +127,7 @@
           "form": {
             "fields": [
               {
-                "prompt": "Does the person in the video laugh?",
+                "prompt": "Does the person in the audio laugh?",
                 "input": {
                   "type": "radio",
                   "options": [
@@ -157,11 +154,11 @@
             ]
           },
           "media": {
-            "type": "video",
+            "type": "audio",
             "mute": false,
             "autoplay": true,
             "controls": true,
-            "url": "av/1_52_cam_1.mp4"
+            "url": "audio/1_50_cam_2.wav"
           }
         },
         {
@@ -169,7 +166,7 @@
           "form": {
             "fields": [
               {
-                "prompt": "Does the person in the video laugh?",
+                "prompt": "Does the person in the audio laugh?",
                 "input": {
                   "type": "radio",
                   "options": [
@@ -196,11 +193,11 @@
             ]
           },
           "media": {
-            "type": "video",
+            "type": "audio",
             "mute": false,
             "autoplay": true,
             "controls": true,
-            "url": "av/1_37_cam_1.mp4"
+            "url": "audio/1_55_cam_1.wav"
           }
         },
         {
@@ -208,7 +205,7 @@
           "form": {
             "fields": [
               {
-                "prompt": "Does the person in the video laugh?",
+                "prompt": "Does the person in the audio laugh?",
                 "input": {
                   "type": "radio",
                   "options": [
@@ -235,11 +232,11 @@
             ]
           },
           "media": {
-            "type": "video",
+            "type": "audio",
             "mute": false,
             "autoplay": true,
             "controls": true,
-            "url": "av/1_18_cam_4.mp4"
+            "url": "audio/2_72_cam_1.wav"
           }
         },
         {
@@ -247,7 +244,7 @@
           "form": {
             "fields": [
               {
-                "prompt": "Does the person in the video laugh?",
+                "prompt": "Does the person in the audio laugh?",
                 "input": {
                   "type": "radio",
                   "options": [
@@ -274,11 +271,11 @@
             ]
           },
           "media": {
-            "type": "video",
+            "type": "audio",
             "mute": false,
             "autoplay": true,
             "controls": true,
-            "url": "av/1_49_cam_1.mp4"
+            "url": "audio/1_13_cam_1.wav"
           }
         },
         {
@@ -286,7 +283,7 @@
           "form": {
             "fields": [
               {
-                "prompt": "Does the person in the video laugh?",
+                "prompt": "Does the person in the audio laugh?",
                 "input": {
                   "type": "radio",
                   "options": [
@@ -313,11 +310,11 @@
             ]
           },
           "media": {
-            "type": "video",
+            "type": "audio",
             "mute": false,
             "autoplay": true,
             "controls": true,
-            "url": "av/1_44_cam_4.mp4"
+            "url": "audio/1_44_cam_2.wav"
           }
         },
         {
@@ -325,7 +322,7 @@
           "form": {
             "fields": [
               {
-                "prompt": "Does the person in the video laugh?",
+                "prompt": "Does the person in the audio laugh?",
                 "input": {
                   "type": "radio",
                   "options": [
@@ -352,11 +349,11 @@
             ]
           },
           "media": {
-            "type": "video",
+            "type": "audio",
             "mute": false,
             "autoplay": true,
             "controls": true,
-            "url": "av/1_45_cam_1.mp4"
+            "url": "audio/1_53_cam_2.wav"
           }
         },
         {
@@ -364,7 +361,7 @@
           "form": {
             "fields": [
               {
-                "prompt": "Does the person in the video laugh?",
+                "prompt": "Does the person in the audio laugh?",
                 "input": {
                   "type": "radio",
                   "options": [
@@ -391,11 +388,11 @@
             ]
           },
           "media": {
-            "type": "video",
+            "type": "audio",
             "mute": false,
             "autoplay": true,
             "controls": true,
-            "url": "av/1_46_cam_2.mp4"
+            "url": "audio/1_45_cam_2.wav"
           }
         },
         {
@@ -403,7 +400,7 @@
           "form": {
             "fields": [
               {
-                "prompt": "Does the person in the video laugh?",
+                "prompt": "Does the person in the audio laugh?",
                 "input": {
                   "type": "radio",
                   "options": [
@@ -430,11 +427,11 @@
             ]
           },
           "media": {
-            "type": "video",
+            "type": "audio",
             "mute": false,
             "autoplay": true,
             "controls": true,
-            "url": "av/1_63_cam_1.mp4"
+            "url": "audio/2_78_cam_4.wav"
           }
         },
         {
@@ -442,7 +439,7 @@
           "form": {
             "fields": [
               {
-                "prompt": "Does the person in the video laugh?",
+                "prompt": "Does the person in the audio laugh?",
                 "input": {
                   "type": "radio",
                   "options": [
@@ -469,11 +466,11 @@
             ]
           },
           "media": {
-            "type": "video",
+            "type": "audio",
             "mute": false,
             "autoplay": true,
             "controls": true,
-            "url": "av/1_9_cam_3.mp4"
+            "url": "audio/1_54_cam_4.wav"
           }
         },
         {
@@ -481,7 +478,7 @@
           "form": {
             "fields": [
               {
-                "prompt": "Does the person in the video laugh?",
+                "prompt": "Does the person in the audio laugh?",
                 "input": {
                   "type": "radio",
                   "options": [
@@ -508,11 +505,11 @@
             ]
           },
           "media": {
-            "type": "video",
+            "type": "audio",
             "mute": false,
             "autoplay": true,
             "controls": true,
-            "url": "av/1_63_cam_3.mp4"
+            "url": "audio/1_2_cam_2.wav"
           }
         },
         {
@@ -520,7 +517,7 @@
           "form": {
             "fields": [
               {
-                "prompt": "Does the person in the video laugh?",
+                "prompt": "Does the person in the audio laugh?",
                 "input": {
                   "type": "radio",
                   "options": [
@@ -547,11 +544,11 @@
             ]
           },
           "media": {
-            "type": "video",
+            "type": "audio",
             "mute": false,
             "autoplay": true,
             "controls": true,
-            "url": "av/1_43_cam_3.mp4"
+            "url": "audio/1_12_cam_4.wav"
           }
         },
         {
@@ -559,7 +556,7 @@
           "form": {
             "fields": [
               {
-                "prompt": "Does the person in the video laugh?",
+                "prompt": "Does the person in the audio laugh?",
                 "input": {
                   "type": "radio",
                   "options": [
@@ -586,11 +583,11 @@
             ]
           },
           "media": {
-            "type": "video",
+            "type": "audio",
             "mute": false,
             "autoplay": true,
             "controls": true,
-            "url": "av/2_70_cam_1.mp4"
+            "url": "audio/1_9_cam_2.wav"
           }
         },
         {
@@ -598,7 +595,7 @@
           "form": {
             "fields": [
               {
-                "prompt": "Does the person in the video laugh?",
+                "prompt": "Does the person in the audio laugh?",
                 "input": {
                   "type": "radio",
                   "options": [
@@ -625,11 +622,11 @@
             ]
           },
           "media": {
-            "type": "video",
+            "type": "audio",
             "mute": false,
             "autoplay": true,
             "controls": true,
-            "url": "av/2_67_cam_4.mp4"
+            "url": "audio/1_12_cam_1.wav"
           }
         },
         {
@@ -637,7 +634,7 @@
           "form": {
             "fields": [
               {
-                "prompt": "Does the person in the video laugh?",
+                "prompt": "Does the person in the audio laugh?",
                 "input": {
                   "type": "radio",
                   "options": [
@@ -664,11 +661,11 @@
             ]
           },
           "media": {
-            "type": "video",
+            "type": "audio",
             "mute": false,
             "autoplay": true,
             "controls": true,
-            "url": "av/1_63_cam_2.mp4"
+            "url": "audio/1_47_cam_1.wav"
           }
         },
         {
@@ -676,7 +673,7 @@
           "form": {
             "fields": [
               {
-                "prompt": "Does the person in the video laugh?",
+                "prompt": "Does the person in the audio laugh?",
                 "input": {
                   "type": "radio",
                   "options": [
@@ -703,11 +700,11 @@
             ]
           },
           "media": {
-            "type": "video",
+            "type": "audio",
             "mute": false,
             "autoplay": true,
             "controls": true,
-            "url": "av/1_57_cam_3.mp4"
+            "url": "audio/1_9_cam_3.wav"
           }
         },
         {
@@ -715,7 +712,7 @@
           "form": {
             "fields": [
               {
-                "prompt": "Does the person in the video laugh?",
+                "prompt": "Does the person in the audio laugh?",
                 "input": {
                   "type": "radio",
                   "options": [
@@ -742,11 +739,11 @@
             ]
           },
           "media": {
-            "type": "video",
+            "type": "audio",
             "mute": false,
             "autoplay": true,
             "controls": true,
-            "url": "av/1_62_cam_1.mp4"
+            "url": "audio/1_21_cam_1.wav"
           }
         },
         {
@@ -754,7 +751,7 @@
           "form": {
             "fields": [
               {
-                "prompt": "Does the person in the video laugh?",
+                "prompt": "Does the person in the audio laugh?",
                 "input": {
                   "type": "radio",
                   "options": [
@@ -781,11 +778,11 @@
             ]
           },
           "media": {
-            "type": "video",
+            "type": "audio",
             "mute": false,
             "autoplay": true,
             "controls": true,
-            "url": "av/1_43_cam_4.mp4"
+            "url": "audio/1_2_cam_3.wav"
           }
         }
       ]

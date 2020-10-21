@@ -1,21 +1,16 @@
-import React from 'react'
+import * as React from 'react'
 import {
     Row,
     Col,
     Typography,
     Timeline,
-    Space,
-    Divider,
     Button
 } from 'antd';
-const { Title, Paragraph, Text } = Typography;
-import {Task} from 'Tasks'
+const { Title, Paragraph, Text } = Typography
 
 class VideoInstructionsTask extends React.Component {
-
     render() {
-        console.log(this.props)
-        return <Task {...this.props} validate={()=>{return true}} >
+        return <>
             <Row gutter={16} style={{'marginTop': '20px'}}>
                 <Col span={22} offset={1}>
                     <Title>Video detection of laughter</Title>
@@ -40,10 +35,10 @@ class VideoInstructionsTask extends React.Component {
             </Row>
             <Row gutter={16}>
                 <Col span={22} offset={1}>
-                    <Task.Submit text="I understand. Start annotating!"/>
+                    <Button>I understand. Start annotating!</Button>
                 </Col>
             </Row>
-        </Task>
+        </>
     }
 }
 
