@@ -1,12 +1,12 @@
 {
-  "name": "Annotation",
+  "name": "Local Audio",
   "email": "example@example.com",
   "hits": [
     {
       "type": "timeline",
       "tasks": [
         {
-          "type": "VideoInstructionsTask"
+          "type": "LocalAudioInstructionsTask"
         },
         {
           "type": "QuestionnaireTask",

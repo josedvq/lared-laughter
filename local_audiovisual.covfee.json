@@ -1,11 +1,14 @@
 {
-  "name": "Video-only",
+  "name": "Local Audiovisual",
   "email": "example@example.com",
   "hits": [
     {
       "type": "timeline",
       "tasks": [
         {
+          "type": "LocalAudiovisualInstructionsTask"
+        },
+        {
           "type": "QuestionnaireTask",
           "form": {
             "fields": [
@@ -41,7 +44,7 @@
             "mute": false,
             "autoplay": true,
             "controls": true,
-            "url": "video/1_5_cam_2.mp4"
+            "url": "av/1_51_cam_1.mp4"
           }
         },
         {
@@ -80,7 +83,7 @@
             "mute": false,
             "autoplay": true,
             "controls": true,
-            "url": "video/1_45_cam_1.mp4"
+            "url": "av/1_38_cam_1.mp4"
           }
         },
         {
@@ -119,7 +122,7 @@
             "mute": false,
             "autoplay": true,
             "controls": true,
-            "url": "video/2_70_cam_1.mp4"
+            "url": "av/1_52_cam_3.mp4"
           }
         },
         {
@@ -158,7 +161,7 @@
             "mute": false,
             "autoplay": true,
             "controls": true,
-            "url": "video/1_50_cam_2.mp4"
+            "url": "av/1_52_cam_1.mp4"
           }
         },
         {
@@ -197,7 +200,7 @@
             "mute": false,
             "autoplay": true,
             "controls": true,
-            "url": "video/1_55_cam_1.mp4"
+            "url": "av/1_37_cam_1.mp4"
           }
         },
         {
@@ -236,7 +239,7 @@
             "mute": false,
             "autoplay": true,
             "controls": true,
-            "url": "video/2_72_cam_1.mp4"
+            "url": "av/1_18_cam_4.mp4"
           }
         },
         {
@@ -275,7 +278,7 @@
             "mute": false,
             "autoplay": true,
             "controls": true,
-            "url": "video/1_13_cam_1.mp4"
+            "url": "av/1_49_cam_1.mp4"
           }
         },
         {
@@ -314,7 +317,7 @@
             "mute": false,
             "autoplay": true,
             "controls": true,
-            "url": "video/1_44_cam_2.mp4"
+            "url": "av/1_44_cam_4.mp4"
           }
         },
         {
@@ -353,7 +356,7 @@
             "mute": false,
             "autoplay": true,
             "controls": true,
-            "url": "video/1_53_cam_2.mp4"
+            "url": "av/1_45_cam_1.mp4"
           }
         },
         {
@@ -392,7 +395,7 @@
             "mute": false,
             "autoplay": true,
             "controls": true,
-            "url": "video/1_45_cam_2.mp4"
+            "url": "av/1_46_cam_2.mp4"
           }
         },
         {
@@ -431,7 +434,7 @@
             "mute": false,
             "autoplay": true,
             "controls": true,
-            "url": "video/2_78_cam_4.mp4"
+            "url": "av/1_63_cam_1.mp4"
           }
         },
         {
@@ -470,7 +473,7 @@
             "mute": false,
             "autoplay": true,
             "controls": true,
-            "url": "video/1_54_cam_4.mp4"
+            "url": "av/1_9_cam_3.mp4"
           }
         },
         {
@@ -509,7 +512,7 @@
             "mute": false,
             "autoplay": true,
             "controls": true,
-            "url": "video/1_2_cam_2.mp4"
+            "url": "av/1_63_cam_3.mp4"
           }
         },
         {
@@ -548,7 +551,7 @@
             "mute": false,
             "autoplay": true,
             "controls": true,
-            "url": "video/1_12_cam_4.mp4"
+            "url": "av/1_43_cam_3.mp4"
           }
         },
         {
@@ -587,7 +590,7 @@
             "mute": false,
             "autoplay": true,
             "controls": true,
-            "url": "video/1_9_cam_2.mp4"
+            "url": "av/2_70_cam_1.mp4"
           }
         },
         {
@@ -626,7 +629,7 @@
             "mute": false,
             "autoplay": true,
             "controls": true,
-            "url": "video/1_12_cam_1.mp4"
+            "url": "av/2_67_cam_4.mp4"
           }
         },
         {
@@ -665,7 +668,7 @@
             "mute": false,
             "autoplay": true,
             "controls": true,
-            "url": "video/1_47_cam_1.mp4"
+            "url": "av/1_63_cam_2.mp4"
           }
         },
         {
@@ -704,7 +707,7 @@
             "mute": false,
             "autoplay": true,
             "controls": true,
-            "url": "video/1_9_cam_3.mp4"
+            "url": "av/1_57_cam_3.mp4"
           }
         },
         {
@@ -743,7 +746,7 @@
             "mute": false,
             "autoplay": true,
             "controls": true,
-            "url": "video/1_21_cam_1.mp4"
+            "url": "av/1_62_cam_1.mp4"
           }
         },
         {
@@ -782,7 +785,7 @@
             "mute": false,
             "autoplay": true,
             "controls": true,
-            "url": "video/1_2_cam_3.mp4"
+            "url": "av/1_43_cam_4.mp4"
           }
         }
       ]
