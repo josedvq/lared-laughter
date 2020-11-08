@@ -93,7 +93,7 @@ class LocalVideoInstructionsTask extends React.Component {
             </Row>
             <Row gutter={16}>
                 <Col span={22} offset={1}>
-                    <Button>I understand. Start annotating!</Button>
+                    <Button onClick={() => { this.props.onSubmit({}) }}>I understand. Start annotating!</Button>
                 </Col>
             </Row>
         </>
@@ -127,7 +127,7 @@ class LocalAudioInstructionsTask extends React.Component {
             </Row>
             <Row gutter={16}>
                 <Col span={22} offset={1}>
-                    <Button>I understand. Start annotating!</Button>
+                    <Button onClick={() => { this.props.onSubmit({}) }}>I understand. Start annotating!</Button>
                 </Col>
             </Row>
         </>
@@ -161,7 +161,7 @@ class LocalAudiovisualInstructionsTask extends React.Component {
             </Row>
             <Row gutter={16}>
                 <Col span={22} offset={1}>
-                    <Button>I understand. Start annotating!</Button>
+                    <Button onClick={()=>{this.props.onSubmit({})}}>I understand. Start annotating!</Button>
                 </Col>
             </Row>
         </>
