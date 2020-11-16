@@ -1,5 +1,5 @@
 {
-  "name": "Annotation",
+  "name": "Pilot",
   "email": "example@example.com",
   "hits": [
     {
@@ -10,6 +10,7 @@
         },
         {
           "type": "QuestionnaireTask",
+          "instructions": "Pay attention to the squared person. When you are ready, play the video and then answer the questions on the right.",
           "form": {
             "fields": [
               {
@@ -41,14 +42,13 @@
           },
           "media": {
             "type": "video",
-            "mute": false,
-            "autoplay": true,
             "controls": true,
-            "url": "av/1_51_cam_1.mp4"
+            "url": "av/1_0_cam_2.mp4"
           }
         },
         {
           "type": "QuestionnaireTask",
+          "instructions": "Pay attention to the squared person. When you are ready, play the video and then answer the questions on the right.",
           "form": {
             "fields": [
               {
@@ -80,14 +80,13 @@
           },
           "media": {
             "type": "video",
-            "mute": false,
-            "autoplay": true,
             "controls": true,
-            "url": "av/1_38_cam_1.mp4"
+            "url": "av/1_38_cam_4.mp4"
           }
         },
         {
           "type": "QuestionnaireTask",
+          "instructions": "Pay attention to the squared person. When you are ready, play the video and then answer the questions on the right.",
           "form": {
             "fields": [
               {
@@ -119,14 +118,13 @@
           },
           "media": {
             "type": "video",
-            "mute": false,
-            "autoplay": true,
             "controls": true,
-            "url": "av/1_52_cam_3.mp4"
+            "url": "av/1_46_cam_4.mp4"
           }
         },
         {
           "type": "QuestionnaireTask",
+          "instructions": "Pay attention to the squared person. When you are ready, play the video and then answer the questions on the right.",
           "form": {
             "fields": [
               {
@@ -158,14 +156,13 @@
           },
           "media": {
             "type": "video",
-            "mute": false,
-            "autoplay": true,
             "controls": true,
-            "url": "av/1_52_cam_1.mp4"
+            "url": "av/1_51_cam_3.mp4"
           }
         },
         {
           "type": "QuestionnaireTask",
+          "instructions": "Pay attention to the squared person. When you are ready, play the video and then answer the questions on the right.",
           "form": {
             "fields": [
               {
@@ -197,14 +194,13 @@
           },
           "media": {
             "type": "video",
-            "mute": false,
-            "autoplay": true,
             "controls": true,
-            "url": "av/1_37_cam_1.mp4"
+            "url": "av/1_43_cam_2.mp4"
           }
         },
         {
           "type": "QuestionnaireTask",
+          "instructions": "Pay attention to the squared person. When you are ready, play the video and then answer the questions on the right.",
           "form": {
             "fields": [
               {
@@ -236,14 +232,13 @@
           },
           "media": {
             "type": "video",
-            "mute": false,
-            "autoplay": true,
             "controls": true,
-            "url": "av/1_18_cam_4.mp4"
+            "url": "av/1_53_cam_4.mp4"
           }
         },
         {
           "type": "QuestionnaireTask",
+          "instructions": "Pay attention to the squared person. When you are ready, play the video and then answer the questions on the right.",
           "form": {
             "fields": [
               {
@@ -275,14 +270,13 @@
           },
           "media": {
             "type": "video",
-            "mute": false,
-            "autoplay": true,
             "controls": true,
-            "url": "av/1_49_cam_1.mp4"
+            "url": "av/1_28_cam_1.mp4"
           }
         },
         {
           "type": "QuestionnaireTask",
+          "instructions": "Pay attention to the squared person. When you are ready, play the video and then answer the questions on the right.",
           "form": {
             "fields": [
               {
@@ -314,14 +308,13 @@
           },
           "media": {
             "type": "video",
-            "mute": false,
-            "autoplay": true,
             "controls": true,
-            "url": "av/1_44_cam_4.mp4"
+            "url": "av/1_8_cam_3.mp4"
           }
         },
         {
           "type": "QuestionnaireTask",
+          "instructions": "Pay attention to the squared person. When you are ready, play the video and then answer the questions on the right.",
           "form": {
             "fields": [
               {
@@ -353,14 +346,13 @@
           },
           "media": {
             "type": "video",
-            "mute": false,
-            "autoplay": true,
             "controls": true,
-            "url": "av/1_45_cam_1.mp4"
+            "url": "av/1_13_cam_4.mp4"
           }
         },
         {
           "type": "QuestionnaireTask",
+          "instructions": "Pay attention to the squared person. When you are ready, play the video and then answer the questions on the right.",
           "form": {
             "fields": [
               {
@@ -392,14 +384,13 @@
           },
           "media": {
             "type": "video",
-            "mute": false,
-            "autoplay": true,
             "controls": true,
-            "url": "av/1_46_cam_2.mp4"
+            "url": "av/1_9_cam_2.mp4"
           }
         },
         {
           "type": "QuestionnaireTask",
+          "instructions": "Pay attention to the squared person. When you are ready, play the video and then answer the questions on the right.",
           "form": {
             "fields": [
               {
@@ -431,209 +422,13 @@
           },
           "media": {
             "type": "video",
-            "mute": false,
-            "autoplay": true,
-            "controls": true,
-            "url": "av/1_63_cam_1.mp4"
-          }
-        },
-        {
-          "type": "QuestionnaireTask",
-          "form": {
-            "fields": [
-              {
-                "prompt": "Does the person in the video laugh?",
-                "input": {
-                  "type": "radio",
-                  "options": [
-                    "yes",
-                    "no"
-                  ]
-                }
-              },
-              {
-                "prompt": "What is the intensity of the laugh?",
-                "input": {
-                  "type": "radio",
-                  "options": [
-                    "1",
-                    "2",
-                    "3",
-                    "4",
-                    "5",
-                    "6",
-                    "7"
-                  ]
-                }
-              }
-            ]
-          },
-          "media": {
-            "type": "video",
-            "mute": false,
-            "autoplay": true,
-            "controls": true,
-            "url": "av/1_9_cam_3.mp4"
-          }
-        },
-        {
-          "type": "QuestionnaireTask",
-          "form": {
-            "fields": [
-              {
-                "prompt": "Does the person in the video laugh?",
-                "input": {
-                  "type": "radio",
-                  "options": [
-                    "yes",
-                    "no"
-                  ]
-                }
-              },
-              {
-                "prompt": "What is the intensity of the laugh?",
-                "input": {
-                  "type": "radio",
-                  "options": [
-                    "1",
-                    "2",
-                    "3",
-                    "4",
-                    "5",
-                    "6",
-                    "7"
-                  ]
-                }
-              }
-            ]
-          },
-          "media": {
-            "type": "video",
-            "mute": false,
-            "autoplay": true,
-            "controls": true,
-            "url": "av/1_63_cam_3.mp4"
-          }
-        },
-        {
-          "type": "QuestionnaireTask",
-          "form": {
-            "fields": [
-              {
-                "prompt": "Does the person in the video laugh?",
-                "input": {
-                  "type": "radio",
-                  "options": [
-                    "yes",
-                    "no"
-                  ]
-                }
-              },
-              {
-                "prompt": "What is the intensity of the laugh?",
-                "input": {
-                  "type": "radio",
-                  "options": [
-                    "1",
-                    "2",
-                    "3",
-                    "4",
-                    "5",
-                    "6",
-                    "7"
-                  ]
-                }
-              }
-            ]
-          },
-          "media": {
-            "type": "video",
-            "mute": false,
-            "autoplay": true,
-            "controls": true,
-            "url": "av/1_43_cam_3.mp4"
-          }
-        },
-        {
-          "type": "QuestionnaireTask",
-          "form": {
-            "fields": [
-              {
-                "prompt": "Does the person in the video laugh?",
-                "input": {
-                  "type": "radio",
-                  "options": [
-                    "yes",
-                    "no"
-                  ]
-                }
-              },
-              {
-                "prompt": "What is the intensity of the laugh?",
-                "input": {
-                  "type": "radio",
-                  "options": [
-                    "1",
-                    "2",
-                    "3",
-                    "4",
-                    "5",
-                    "6",
-                    "7"
-                  ]
-                }
-              }
-            ]
-          },
-          "media": {
-            "type": "video",
-            "mute": false,
-            "autoplay": true,
-            "controls": true,
-            "url": "av/2_70_cam_1.mp4"
-          }
-        },
-        {
-          "type": "QuestionnaireTask",
-          "form": {
-            "fields": [
-              {
-                "prompt": "Does the person in the video laugh?",
-                "input": {
-                  "type": "radio",
-                  "options": [
-                    "yes",
-                    "no"
-                  ]
-                }
-              },
-              {
-                "prompt": "What is the intensity of the laugh?",
-                "input": {
-                  "type": "radio",
-                  "options": [
-                    "1",
-                    "2",
-                    "3",
-                    "4",
-                    "5",
-                    "6",
-                    "7"
-                  ]
-                }
-              }
-            ]
-          },
-          "media": {
-            "type": "video",
-            "mute": false,
-            "autoplay": true,
             "controls": true,
             "url": "av/2_67_cam_4.mp4"
           }
         },
         {
           "type": "QuestionnaireTask",
+          "instructions": "Pay attention to the squared person. When you are ready, play the video and then answer the questions on the right.",
           "form": {
             "fields": [
               {
@@ -665,14 +460,13 @@
           },
           "media": {
             "type": "video",
-            "mute": false,
-            "autoplay": true,
             "controls": true,
-            "url": "av/1_63_cam_2.mp4"
+            "url": "av/1_0_cam_3.mp4"
           }
         },
         {
           "type": "QuestionnaireTask",
+          "instructions": "Pay attention to the squared person. When you are ready, play the video and then answer the questions on the right.",
           "form": {
             "fields": [
               {
@@ -704,14 +498,13 @@
           },
           "media": {
             "type": "video",
-            "mute": false,
-            "autoplay": true,
             "controls": true,
-            "url": "av/1_57_cam_3.mp4"
+            "url": "av/1_27_cam_1.mp4"
           }
         },
         {
           "type": "QuestionnaireTask",
+          "instructions": "Pay attention to the squared person. When you are ready, play the video and then answer the questions on the right.",
           "form": {
             "fields": [
               {
@@ -743,14 +536,13 @@
           },
           "media": {
             "type": "video",
-            "mute": false,
-            "autoplay": true,
             "controls": true,
-            "url": "av/1_62_cam_1.mp4"
+            "url": "av/1_63_cam_3.mp4"
           }
         },
         {
           "type": "QuestionnaireTask",
+          "instructions": "Pay attention to the squared person. When you are ready, play the video and then answer the questions on the right.",
           "form": {
             "fields": [
               {
@@ -782,10 +574,198 @@
           },
           "media": {
             "type": "video",
-            "mute": false,
-            "autoplay": true,
             "controls": true,
-            "url": "av/1_43_cam_4.mp4"
+            "url": "av/1_2_cam_2.mp4"
+          }
+        },
+        {
+          "type": "QuestionnaireTask",
+          "instructions": "Pay attention to the squared person. When you are ready, play the video and then answer the questions on the right.",
+          "form": {
+            "fields": [
+              {
+                "prompt": "Does the person in the video laugh?",
+                "input": {
+                  "type": "radio",
+                  "options": [
+                    "yes",
+                    "no"
+                  ]
+                }
+              },
+              {
+                "prompt": "What is the intensity of the laugh?",
+                "input": {
+                  "type": "radio",
+                  "options": [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7"
+                  ]
+                }
+              }
+            ]
+          },
+          "media": {
+            "type": "video",
+            "controls": true,
+            "url": "av/1_3_cam_2.mp4"
+          }
+        },
+        {
+          "type": "QuestionnaireTask",
+          "instructions": "Pay attention to the squared person. When you are ready, play the video and then answer the questions on the right.",
+          "form": {
+            "fields": [
+              {
+                "prompt": "Does the person in the video laugh?",
+                "input": {
+                  "type": "radio",
+                  "options": [
+                    "yes",
+                    "no"
+                  ]
+                }
+              },
+              {
+                "prompt": "What is the intensity of the laugh?",
+                "input": {
+                  "type": "radio",
+                  "options": [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7"
+                  ]
+                }
+              }
+            ]
+          },
+          "media": {
+            "type": "video",
+            "controls": true,
+            "url": "av/1_33_cam_4.mp4"
+          }
+        },
+        {
+          "type": "QuestionnaireTask",
+          "instructions": "Pay attention to the squared person. When you are ready, play the video and then answer the questions on the right.",
+          "form": {
+            "fields": [
+              {
+                "prompt": "Does the person in the video laugh?",
+                "input": {
+                  "type": "radio",
+                  "options": [
+                    "yes",
+                    "no"
+                  ]
+                }
+              },
+              {
+                "prompt": "What is the intensity of the laugh?",
+                "input": {
+                  "type": "radio",
+                  "options": [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7"
+                  ]
+                }
+              }
+            ]
+          },
+          "media": {
+            "type": "video",
+            "controls": true,
+            "url": "av/1_19_cam_1.mp4"
+          }
+        },
+        {
+          "type": "QuestionnaireTask",
+          "instructions": "Pay attention to the squared person. When you are ready, play the video and then answer the questions on the right.",
+          "form": {
+            "fields": [
+              {
+                "prompt": "Does the person in the video laugh?",
+                "input": {
+                  "type": "radio",
+                  "options": [
+                    "yes",
+                    "no"
+                  ]
+                }
+              },
+              {
+                "prompt": "What is the intensity of the laugh?",
+                "input": {
+                  "type": "radio",
+                  "options": [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7"
+                  ]
+                }
+              }
+            ]
+          },
+          "media": {
+            "type": "video",
+            "controls": true,
+            "url": "av/1_12_cam_4.mp4"
+          }
+        },
+        {
+          "type": "QuestionnaireTask",
+          "instructions": "Pay attention to the squared person. When you are ready, play the video and then answer the questions on the right.",
+          "form": {
+            "fields": [
+              {
+                "prompt": "Does the person in the video laugh?",
+                "input": {
+                  "type": "radio",
+                  "options": [
+                    "yes",
+                    "no"
+                  ]
+                }
+              },
+              {
+                "prompt": "What is the intensity of the laugh?",
+                "input": {
+                  "type": "radio",
+                  "options": [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7"
+                  ]
+                }
+              }
+            ]
+          },
+          "media": {
+            "type": "video",
+            "controls": true,
+            "url": "av/2_78_cam_4.mp4"
           }
         }
       ]
