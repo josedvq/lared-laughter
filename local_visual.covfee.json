@@ -6,7 +6,7 @@
       "type": "timeline",
       "tasks": [
         {
-          "type": "LocalVisualInstructionsTask"
+          "type": "LocalVideoInstructionsTask"
         },
         {
           "type": "QuestionnaireTask",
