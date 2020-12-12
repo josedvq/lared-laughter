@@ -1,13 +1,20 @@
+// import {
+//     VideoInstructionsTask, 
+//     LocalAudioInstructionsTask, 
+//     LocalVideoInstructionsTask, 
+//     LocalAudiovisualInstructionsTask
+// } from './video_instructions'
+
 import {
+    GeneralInstructionsTask,
     VideoInstructionsTask, 
-    LocalAudioInstructionsTask, 
-    LocalVideoInstructionsTask, 
-    LocalAudiovisualInstructionsTask
-} from './video_instructions'
+    AudioInstructionsTask, 
+    AVInstructionsTask
+} from './pilot_instructions'
 
 export default { 
+    'GeneralInstructionsTask': GeneralInstructionsTask,
     'VideoInstructionsTask': VideoInstructionsTask,
-    'LocalAudioInstructionsTask': LocalAudioInstructionsTask,
-    'LocalVideoInstructionsTask': LocalVideoInstructionsTask,
-    'LocalAudiovisualInstructionsTask': LocalAudiovisualInstructionsTask
+    'AudioInstructionsTask': AudioInstructionsTask,
+    'AVInstructionsTask': AVInstructionsTask
 }
