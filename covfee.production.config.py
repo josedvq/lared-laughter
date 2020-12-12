@@ -1,8 +1,6 @@
 FLASK_ENV = 'production'
 
-APP_URL = 'http://helix.ewi.tudelft.nl/lared'
-API_URL = APP_URL + '/api'
-APP_PORT = 80
+BASE_URL = 'http://helix.ewi.tudelft.nl/lared'
 
 STATIC_URL = 'http://helix.ewi.tudelft.nl/covfee-static'
 BUNDLE_URL = 'http://helix.ewi.tudelft.nl/lared-www/main.js'
