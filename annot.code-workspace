@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../covfee"
+		},
+		{
+			"path": "../lared"
+		}
+	],
+	"settings": {}
+}

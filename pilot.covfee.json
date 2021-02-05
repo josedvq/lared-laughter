@@ -7,6 +7,9 @@
       "id": "pilot",
       "name": "Pilot",
       "type": "timeline",
+      "interface": {
+        "showProgress": true
+      },
       "tasks": [
         {
           "type": "VideoInstructionsTask"
