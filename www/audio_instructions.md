@@ -1,15 +1,21 @@
 # Audio-only ratings
 
-For each task:
+Welcome!
+
+The following sections consists in rating recordings of laughter in social interaction. For each laughter recording there are two tasks to complete:
+
+### 1. Recognition
 
 1. Play the video by pressing the spacebar. Make sure to bring the window into focus if it doesn't work. **The video contains no image, only audio of a person in an interaction**
-2. Press "q" when you perceive laughter to be ocurring. Keep "q" pressed until the laughter stops, and press it again if it resumes. In other words, the key should be down when laughter is ocurring and up when laughter is not ocurring.
-3. Press next. Now provide your rating of laughter intensity on the right. Please listen to the examples below to understand what are low-intensity and high-intensity laughs. 
-4. Provide a rating of confidence. This value should be about your confidence that laughter did or did not occur in the video. It should be highest if you are absolutely certain that laughter occured or did not occur, lowest if you are not at all certain.
+2. Press "q" when you perceive laughter to be ocurring. Keep "q" pressed until the laughter stops, and press it again if it resumes. In other words, the key should be down when laughter is ocurring and up when laughter is not ocurring. Submit the results and move on if you are satisfied. You can also choose to re-annotate the segment.
+
+### 2. Rating
+1. Provide your rating of laughter intensity on the right. You may play the video once more before rating it. Please watch the examples below to understand what are low-intensity and high-intensity laughs. 
+2. Provide a rating of confidence. This value should be about your confidence that laughter did or did not occur in the video. It should be highest if you are absolutely certain that laughter occured or did not occur, lowest if you are not at all certain.
 
 This video explains the process:
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/mwvnL9l8p8E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+TODO
 
 ## Laughter examples: please watch!
 
