@@ -1,11 +1,12 @@
 {
-  "name": "Pilot",
+  "name": "Laughter Pilot",
   "id": "pilot",
   "email": "example@example.com",
   "hits": [
     {
       "id": "pilot",
       "name": "Pilot",
+      "repeat": 4,
       "type": "annotation",
       "interface": {
         "showProgress": true
