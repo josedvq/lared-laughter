@@ -53,26 +53,26 @@ TODO
 ### No laughter
 
 <div style="display: flex;">
-<video style="max-width: 33%;" controls="true" controlsList="nodownload" src="$$www$$/speech_examples/av/02_fdc6ec9a1565f2036adf688053caca74afef9cec1ac2fdd412f2f61f18c5d3ff_cam_4.mp4"></video>
-<video style="max-width: 33%;" controls="true" controlsList="nodownload" src="$$www$$/speech_examples/av/03_cf09e56c30dff82156b23fa24409160ee2024d58aeaa1bbecf822cc6028985eb_cam_3.mp4"></video>
-<video style="max-width: 33%;" controls="true" controlsList="nodownload" src="$$www$$/speech_examples/av/01_cd06e634e1facf52b3979b679388eb1da3e6bc1208c13e591470b9aacc95022b_cam_3.mp4"></video>
+<video style="max-width: 33%;" controls="true" controlsList="nodownload" src="$$www$$/samples/17_2f8b520c1e60c71d074820a010c90b4150acf491db6011c94df03aea1c6926c2_cam_1.mp4"></video>
+<video style="max-width: 33%;" controls="true" controlsList="nodownload" src="$$www$$/samples/03_6272e578b6176b13435403979686b7cc00c746a1b37ecbc4cb67dd9dd401e03c_cam_3.mp4"></video>
+<video style="max-width: 33%;" controls="true" controlsList="nodownload" src="$$www$$/samples/11_b2fe398b0c8902971fa0c8c80e78cca0e9869091ff79d1a446fa762ce7f518f5_cam_3.mp4"></video>
 </div>
 <br/><br/><br/>
 
 ### Low-intensity laughter
 
 <div style="display: flex;">
-<video style="max-width: 33%;" controls="true" controlsList="nodownload" src="$$www$$/laughter_examples/av/11_09ffcfd6275e0011da0d794b050e7a4efa0abc0ba1cd9b1b865b0a1630e15924_cam_1.mp4"></video>
-<video style="max-width: 33%;" controls="true" controlsList="nodownload" src="$$www$$/laughter_examples/av/33_a1e409a58633e5a3499e6669ba74268bb73d1975dbbfe90994a4407f93d47172_cam_4.mp4"></video>
-<video style="max-width: 33%;" controls="true" controlsList="nodownload" src="$$www$$/laughter_examples/av/23_d91bdba302a798d9492bfa5973e97dcfa67ff745e20208a5bee2a2a3c48daaba_cam_1.mp4"></video>
+<video style="max-width: 33%;" controls="true" controlsList="nodownload" src="$$www$$/samples/11_09ffcfd6275e0011da0d794b050e7a4efa0abc0ba1cd9b1b865b0a1630e15924_cam_1.mp4"></video>
+<video style="max-width: 33%;" controls="true" controlsList="nodownload" src="$$www$$/samples/33_a1e409a58633e5a3499e6669ba74268bb73d1975dbbfe90994a4407f93d47172_cam_4.mp4"></video>
+<video style="max-width: 33%;" controls="true" controlsList="nodownload" src="$$www$$/samples/23_d91bdba302a798d9492bfa5973e97dcfa67ff745e20208a5bee2a2a3c48daaba_cam_1.mp4"></video>
 </div>
 <br/><br/><br/>
 
 ### High-intensity laughter
 
 <div style="display: flex;">
-<video style="max-width: 33%;" controls="true" controlsList="nodownload" src="$$www$$/laughter_examples/av/01_793aeaa0ddbbceb35fee31c08b107b9b6ce34436c6bdfa673a601aa4f1681825_cam_1.mp4"></video>
-<video style="max-width: 33%;" controls="true" controlsList="nodownload" src="$$www$$/laughter_examples/av/17_4cb60a84e446de7d0077be4912fe9931abe6bec2e3777c28c9bf2ae8b9358b01_cam_1.mp4"></video>
-<video style="max-width: 33%;" controls="true" controlsList="nodownload" src="$$www$$/laughter_examples/av/25_a460e46f02b6c58e8d485f7a970cdc24bff1995f52a1e8040f08356ecde8cb35_cam_1.mp4"></video>
+<video style="max-width: 33%;" controls="true" controlsList="nodownload" src="$$www$$/samples/01_793aeaa0ddbbceb35fee31c08b107b9b6ce34436c6bdfa673a601aa4f1681825_cam_1.mp4"></video>
+<video style="max-width: 33%;" controls="true" controlsList="nodownload" src="$$www$$/samples/17_4cb60a84e446de7d0077be4912fe9931abe6bec2e3777c28c9bf2ae8b9358b01_cam_1.mp4"></video>
+<video style="max-width: 33%;" controls="true" controlsList="nodownload" src="$$www$$/samples/25_a460e46f02b6c58e8d485f7a970cdc24bff1995f52a1e8040f08356ecde8cb35_cam_1.mp4"></video>
 </div>
 <br/><br/><br/>
