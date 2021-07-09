@@ -28,10 +28,6 @@ The following sections consists in rating recordings of laughter in social inter
 
 <br/>
 
-This video explains the process:
-
-TODO
-
 ## Important training phase: please watch!
 
 > The following are examples of no laughter, low intensity laughter, and high intensity laughter sourced from the dataset. We expect that these will help you understand what to expect from this task and calibrate your ratings of laughter intensity. Note that without access to all modalities it might be hard to perceive the intensity of the laughs and that is okay.
