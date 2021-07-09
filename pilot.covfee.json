@@ -6,6 +6,7 @@
     {
       "id": "HIT1",
       "name": "HIT1",
+      "repeat": 5,
       "interface": {
         "type": "timeline"
       },
@@ -11004,6 +11005,7 @@
     {
       "id": "HIT2",
       "name": "HIT2",
+      "repeat": 5,
       "interface": {
         "type": "timeline"
       },
@@ -22002,6 +22004,7 @@
     {
       "id": "HIT3",
       "name": "HIT3",
+      "repeat": 5,
       "interface": {
         "type": "timeline"
       },
