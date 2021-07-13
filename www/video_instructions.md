@@ -1,50 +1,41 @@
 # Video-only ratings
 
-Welcome!
+The following sections consists in detecting and rating laughter **without audio** (ie. **the videos are now muted**). For each short video there are two tasks to complete:
 
-The following sections consists in rating recordings of laughter in social interaction. For each laughter recording there are two tasks to complete:
+1. Recognition: you will have to press a key (q) when you perceive laughter to be happening in the video.
+2. Rating: if you thought there was laughter, we ask you to rate the intensity of the laughter and your confidence that there was or was not laughter.
 
-### 1. Recognition
+<div class="md-block info">
+<ul>
+<li><strong>We want to capture your "gut feeling" about laughter. In the recognition task, do not worry about pressing the key too late, some delay is normal.</strong></li>
+<li>You may repeat the recognition task once if you made an important mistake.</li>
+</ul>
+</div>
+
+<!-- ### 1. Recognition
 
 1. Play the video by pressing the spacebar. Make sure to bring the window into focus if it doesn't work.
 2. Press "q" when you perceive laughter to be ocurring. Keep "q" pressed until the laughter stops, and press it again if it resumes. In other words, the key should be down when laughter is ocurring and up when laughter is not ocurring. Submit the results and move on if you are satisfied. You can also choose to re-annotate the segment.
 
 ### 2. Rating
 1. Provide your rating of laughter intensity on the right. You may play the video once more before rating it. Please watch the examples below to understand what are low-intensity and high-intensity laughs. 
-2. Provide a rating of confidence. This value should be about your confidence that laughter did or did not occur in the video. It should be highest if you are absolutely certain that laughter occured or did not occur, lowest if you are not at all certain.
+2. Provide a rating of confidence. This value should be about your confidence that laughter did or did not occur in the video. It should be highest if you are absolutely certain that laughter occured or did not occur, lowest if you are not at all certain. -->
 
-<div data-show="true" class="ant-alert ant-alert-error ant-alert-with-description ant-alert-no-icon">
-<div class="ant-alert-content">
-<div class="ant-alert-message">Important!</div>
-<div class="ant-alert-description">
-<ul>
-<li>If you are not completely sure but you think you might see laughter, we want you to annotate it as laughter</li>
-<li>In recognition, <strong>don't worry about pressing / releasing the key too late.</strong> Response time will be taken into account.</li>
-<li>Make sure to maximize your browser window before you start annotating.</li>
-</ul>
-</div>
-</div>
-</div>
 
-<br/>
 
 ## Important training phase: please watch!
 
-> The following are examples of no laughter, low intensity laughter, and high intensity laughter sourced from the dataset. We expect that these will help you understand what to expect from this task and calibrate your ratings of laughter intensity. Note that without access to all modalities it might be hard to perceive the intensity of the laughs and that is okay.
+> The following are examples of no laughter, low intensity laughter, and high intensity laughter sourced from the dataset. We hope that these will help you understand what to expect from this task and calibrate your ratings of laughter intensity.
 
-<div data-show="true" class="ant-alert ant-alert-error ant-alert-with-description ant-alert-no-icon">
-<div class="ant-alert-content">
-<div class="ant-alert-message">Important!</div>
-<div class="ant-alert-description">
+
+<div class="md-block warning">
+<h2>Important</h2>
 <ul>
-<li>Make sure that you have working headphones/speakers. Use the segments below to make sure that you can clearly hear the subjects in the videos.</li>
-<li><strong>Note that the videos may contain noise from other people in the scene.</strong> It should however be clear who the wearer of the microphone is.</li>
+<li>The videos below contain audio to help you perceive laughter better, but <strong>you will not have audio in the following tasks.</strong> <strong>Pay attention to the body movements that indicate laughter in these examples.</strong></li>
 <li>The person in the red box is always the target speaker whose audio is playing.</li>
 </ul>
 </div>
-</div>
-</div>
-<br/>
+
 
 ### No laughter
 

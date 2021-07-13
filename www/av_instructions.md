@@ -1,30 +1,25 @@
 # Audiovisual ratings
 
-<div data-show="true" class="ant-alert ant-alert-error ant-alert-with-description ant-alert-no-icon">
-<div class="ant-alert-content">
-<div class="ant-alert-message">Important!</div>
-<div class="ant-alert-description">
-The following examples contain audio. Please make sure that you can hear it. The following instructions are the same as for the previous section, but we expect you to listen to the audio of the interaction as well.
+The following sections consist in detecting and rating laughter **from audio and video**. For each short segment there are two tasks to complete:
+
+1. Recognition: you will have to press a key (q) when you perceive laughter to be happening,
+2. Rating: if you thought there was laughter, we ask you to rate the intensity of the laughter and your confidence that there was or was not laughter.
+
+<div class="md-block info">
+<ul>
+<li><strong>We want to capture your "gut feeling" about laughter. In the recognition task, do not worry about pressing the key too late, some delay is normal.</strong></li>
+<li>You may repeat the recognition task once if you made an important mistake.</li>
+</ul>
 </div>
+
+## Laughter examples
+
+<div class="md-block warning">
+<h2>Important</h2>
+<ul>
+<li>These are the same videos you saw before. Feel free to watch them again to get ready for this section.</li>
+</ul>
 </div>
-</div>
-
-Welcome!
-
-The following sections consists in rating recordings of laughter in social interaction. For each laughter recording there are two tasks to complete:
-
-### 1. Recognition
-
-1. Play the video by pressing the spacebar. Make sure to bring the window into focus if it doesn't work. **The video contains no image, only audio of a person in an interaction**
-2. Press "q" when you perceive laughter to be ocurring. Keep "q" pressed until the laughter stops, and press it again if it resumes. In other words, the key should be down when laughter is ocurring and up when laughter is not ocurring. Submit the results and move on if you are satisfied. You can also choose to re-annotate the segment.
-
-### 2. Rating
-1. Provide your rating of laughter intensity on the right. You may play the video once more before rating it. Please watch the examples below to understand what are low-intensity and high-intensity laughs. 
-2. Provide a rating of confidence. This value should be about your confidence that laughter did or did not occur in the video. It should be highest if you are absolutely certain that laughter occured or did not occur, lowest if you are not at all certain.
-
-## Laughter examples: please watch!
-
-> The following are examples of no laughter, low intensity laughter, and high intensity laughter sourced from the dataset. We expect that these will help you understand what to expect from this task and calibrate your ratings of laughter intensity. Note that without access to all modalities it might be hard to perceive the intensity of the laughs and that is okay.
 
 ### No laughter
 
