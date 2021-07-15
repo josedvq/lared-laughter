@@ -17,7 +17,8 @@ The following sections consist in detecting and rating laughter **from audio and
 <div class="md-block warning">
 <h2>Important</h2>
 <ul>
-<li>These are the same videos you saw before. Feel free to watch them again to get ready for this section.</li>
+<li>Please watch the videos below, <strong>paying attention to the sound and body movements of laughter</strong>.</li>
+<li>The person in the red box is always the target speaker whose audio is playing.</li>
 </ul>
 </div>
 

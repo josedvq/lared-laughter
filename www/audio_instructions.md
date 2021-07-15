@@ -1,6 +1,6 @@
 # Audio-only ratings
 
-The following sections consists in detecting and rating laughter **from audio only** (ie. **there is no video of the person**). For each short segment there are two tasks to complete:
+The following tasks consist in detecting and rating laughter **from audio only** (ie. **there is no video of the person**). For each short segment there are two tasks to complete:
 
 1. Recognition: you will have to press a key (q) when you perceive laughter to be happening,
 2. Rating: if you thought there was laughter, we ask you to rate the intensity of the laughter and your confidence that there was or was not laughter.
@@ -17,7 +17,9 @@ The following sections consists in detecting and rating laughter **from audio on
 <div class="md-block warning">
 <h2>Important</h2>
 <ul>
-<li>These are the same videos you saw before. Please watch some of them again. <strong>This time pay attention to the sound of laughter, as you will not have video in the following tasks</strong>.</li>
+<li>To understand the kind of data you will be annotating, <strong>please watch the videos below, paying attention to the sound of laughter.</strong>
+<li>Remember <strong>you will not have video</strong> in the following tasks.</li>
+<li>The person in the red box is always the target speaker whose audio is playing.</li>
 </ul>
 </div>
 
