@@ -10,13 +10,15 @@ class CocoReader:
 
         self.imgs_dict = dict()
         for img in self.coco_json['images']:
-            self.imgs_dict[img['id']] = img
+            hash = img['file_name'].split('_')[1]
+            self.bbs[hash] = []
+            self.imgs_dict[img['id']] = hash
 
         # iterate over annotations and write media
         lared_examples = list()
         for annot in self.coco_json['annotations']:
-            annot_img = self.imgs_dict[annot['image_id']]
-            hash = annot_img['file_name'].split('_')[1]
+            hash = self.imgs_dict[annot['image_id']]
+            # hash = annot_img['file_name'].split('_')[1]
             bbox = annot['bbox']
             self.bbs[hash] = [int(e) for e in bbox]
 
