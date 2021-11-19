@@ -22,6 +22,9 @@ class CocoReader:
             bbox = annot['bbox']
             self.bbs[hash] = [int(e) for e in bbox]
 
+    def __len__(self):
+        return len(self.bbs)
+
     def __getitem__(self, key):
         return self.bbs[key]
 
