@@ -1,1 +1,0 @@
-/home/jose/furnace/covfee/covfee/server/../client/bundles/admin.js
