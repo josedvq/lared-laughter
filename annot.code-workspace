@@ -1,13 +1,16 @@
 {
 	"folders": [
 		{
+			"name": "lared-laughter",
 			"path": "."
 		},
 		{
-			"path": "../covfee"
+			"name": "lared",
+			"path": "../lared"
 		},
 		{
-			"path": "../lared"
+			"name": "covfee",
+			"path": "../covfee"
 		}
 	],
 	"settings": {}

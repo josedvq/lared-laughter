@@ -5,3 +5,4 @@ annotation/www/laughter_examples
 annotation/www/*.js
 *.log
 *.pyc
+**/*/lightning_logs
