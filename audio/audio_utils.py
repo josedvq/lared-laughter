@@ -146,7 +146,7 @@ def pad_sequences(sequences, pad_value=None, max_len=None):
     kwargs = {'constant_values': pad_value} if pad_value is not None else {}
 
     sequences = [librosa.util.fix_length(
-        np.array(ft), max_len, axis=0, **kwargs) for ft in sequences]
+        np.array(ft), size=max_len, axis=0, **kwargs) for ft in sequences]
     return sequences
 
 # This function is for concatenating subfeatures that all have
@@ -183,14 +183,14 @@ def featurize_mfcc(f=None, offset=0, duration=None, y=None, sr=None,
             import pdb; pdb.set_trace()
     else:
         if offset is not None and duration is not None:
-            start_sample = librosa.core.time_to_samples(offset,sr)
-            duration_in_samples = librosa.core.time_to_samples(duration,sr)
+            start_sample = librosa.core.time_to_samples(offset,sr=sr)
+            duration_in_samples = librosa.core.time_to_samples(duration,sr=sr)
             y = y[start_sample:start_sample+duration_in_samples]
 
     # Get concatenated and padded MFCC/delta/RMS features
     S, phase = librosa.magphase(librosa.stft(y, hop_length=hop_length))
     rms = librosa.feature.spectral.rms(S=S).T
-    mfcc_feat = librosa.feature.mfcc(y,sr,n_mfcc=13, n_mels=13,
+    mfcc_feat = librosa.feature.mfcc(y=y,sr=sr,n_mfcc=13, n_mels=13,
         hop_length=hop_length, n_fft=int(sr/40)).T#[:,1:]
     deltas = librosa.feature.delta(mfcc_feat.T).T
     delta_deltas = librosa.feature.delta(mfcc_feat.T, order=2).T

@@ -1,0 +1,6 @@
+[submodule "video/slowfast"]
+	path = video/slowfast
+	url = https://github.com/facebookresearch/slowfast
+[submodule "video/ActivityNet"]
+	path = video/ActivityNet
+	url = git@github.com:activitynet/ActivityNet.git
