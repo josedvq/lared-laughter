@@ -221,7 +221,6 @@ class ResNetBigger(nn.Module):
         out = self.dropout(out)
         out = F.relu(out)
         out = self.linear2(out)
-        out = torch.sigmoid(out)
         return out
     
     def set_device(self, device):

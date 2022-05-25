@@ -6,3 +6,6 @@ annotation/www/*.js
 *.log
 *.pyc
 **/*/lightning_logs
+**/*.ckpt
+video/features
+audio/features

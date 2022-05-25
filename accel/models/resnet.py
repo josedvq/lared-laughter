@@ -85,7 +85,6 @@ class ResNetBaseline(nn.Module):
         x = self.layers(x)
         return self.final(x.mean(dim=-1))
 
-
 class ResNetBlock(nn.Module):
 
     def __init__(self, in_channels: int, out_channels: int) -> None:

@@ -77,7 +77,7 @@ def get_kinetics_val_transform(subsample_frames=8, spatial_res=244, pack=False):
                 Normalize((0.45, 0.45, 0.45), (0.225, 0.225, 0.225)),
                 ShortSideScale(256),
                 CenterCrop(spatial_res),
-                PackPathway(8) if pack else NoneTransform()
+                PackPathway(4) if pack else NoneTransform()
                 ]
             ),
             ),

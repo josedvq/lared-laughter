@@ -1,5 +1,35 @@
 import pickle
 import torch
+import numpy as np
+
+class AccelDictDataset():
+    def __init__(self, accel_path, example_len=64, pad=True, transform=None):
+        self.accel_path = accel_path
+        self.transform = transform
+        self.example_len = example_len
+        self.pad = pad
+        
+        self.accel = pickle.load(open(accel_path, 'rb'))
+
+    def __getitem__(self, key):
+        example_accel = torch.tensor(self.accel.get(key, np.zeros((self.example_len, 3))))
+
+        # cut if the example is larger than example_len
+        if example_accel.shape[0] >= self.example_len:
+            example_accel = example_accel[:self.example_len, :]
+        else:
+            # resize or pad
+            if self.pad:
+                pad = self.example_len - example_accel.shape[0]
+                example_accel = torch.nn.functional.pad(example_accel, pad=[0,0,0,pad],
+                                                    mode='constant', value=0)
+            else:
+                raise Exception('Not implemented')
+
+        if self.transform:
+            example_accel = self.transform(example_accel)
+
+        return example_accel
             
 class AccelLaughterDataset(torch.utils.data.Dataset):
     """Loads a dataset of laughter examples"""

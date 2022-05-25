@@ -203,7 +203,6 @@ def my_video_dataset(
 
 def my_video_dataset_from_dataframe(
     examples_df: pd.DataFrame, 
-    video_path: str,
     clip_sampler: ClipSampler,
     transform: Optional[Callable[[Dict[str, Any]], Dict[str, Any]]] = None,
     video_path_prefix: str = "",
@@ -217,8 +216,6 @@ def my_video_dataset_from_dataframe(
 
     Args:
         examples_df (pd.Dataframe): Path to a dataframe with examples
-
-        accel_path (str): Path to the video files
 
         clip_sampler (ClipSampler): Defines how clips should be sampled from each
                 video. See the clip sampling documentation for more information.
