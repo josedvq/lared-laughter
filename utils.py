@@ -2,8 +2,8 @@ import torch
 
 from sklearn.metrics import roc_auc_score
 
-def get_metrics(outputs, labels, type='binary'):
-    if type == 'binary':
+def get_metrics(outputs, labels, type='classification'):
+    if type == 'classification':
         proba = torch.sigmoid(outputs)
         pred = (proba > 0.5)
 
