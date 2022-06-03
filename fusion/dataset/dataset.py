@@ -3,33 +3,37 @@ import pickle
 import torch
 import pandas as pd
 
-class FatherDataset():
+class FatherDataset(torch.utils.data.Dataset):
     def __init__(
         self,
         examples: pd.DataFrame,
-        map_datasets:dict,
+        extractors:dict,
         id_column = 'id',
-        label_column = 'label'
+        transform = None
     ) -> None:
         self.examples = examples
-        self.map_datasets = map_datasets
+        self.extractors = extractors
         self.id_column = id_column
-        self.label_column = label_column
+        self.transform = transform
 
     def __getitem__(self, idx) -> dict:
-        key = self.examples[self.id_column][idx]
-
         item = {}
-        for ds_name, ds in self.map_datasets.items():
-            item[ds_name] = self.map_datasets[ds_name][key]
-        item['label'] = self.examples[self.label_column][idx]
+        for ex_name, extractor in self.extractors.items():
+            id_column = extractor.get('id_column', self.id_column)
+            if callable(id_column):
+                key = id_column(self.examples.iloc[idx, :])
+            else:
+                key = self.examples[id_column][idx]
+
+            item[ex_name] = extractor['extractor'][key]
+
+        if self.transform is not None:
+            return self.transform(item)
+
         return item
 
     def __len__(self):
         return len(self.examples)
-
-    def get_all_labels(self):
-        return self.examples[self.label_column].to_numpy().squeeze()
 
 class FeatureDataset():
     def __init__(

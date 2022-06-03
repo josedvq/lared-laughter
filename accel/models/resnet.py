@@ -2,113 +2,79 @@ import torch
 from torch import nn
 import torch.nn.functional as F
 
+from tsai.imports import Module
+from tsai.models.layers import ConvBlock, BN1d
+from tsai.models.utils import Squeeze, Add
 #from .utils import ConvBlock, Conv1dSamePadding
 
-class Conv1dSamePadding(nn.Conv1d):
-    """Represents the "Same" padding functionality from Tensorflow.
-    See: https://github.com/pytorch/pytorch/issues/3867
-    Note that the padding argument in the initializer doesn't do anything now
-    """
+class ResBlock(Module):
+    def __init__(self, ni, nf, kss=[7, 5, 3]):
+        self.convblock1 = ConvBlock(ni, nf, kss[0])
+        self.convblock2 = ConvBlock(nf, nf, kss[1])
+        self.convblock3 = ConvBlock(nf, nf, kss[2], act=None)
 
-    def forward(self, input):
-        return conv1d_same_padding(input, self.weight, self.bias, self.stride,
-                                   self.dilation, self.groups)
+        # expand channels for the sum if necessary
+        self.shortcut = BN1d(ni) if ni == nf else ConvBlock(ni, nf, 1, act=None)
+        self.add = Add()
+        self.act = nn.ReLU()
 
+    def forward(self, x):
+        res = x
+        x = self.convblock1(x)
+        x = self.convblock2(x)
+        x = self.convblock3(x)
+        x = self.add(x, self.shortcut(res))
+        x = self.act(x)
+        return x
 
-def conv1d_same_padding(input, weight, bias, stride, dilation, groups):
-    # stride and dilation are expected to be tuples.
-    kernel, dilation, stride = weight.size(2), dilation[0], stride[0]
-    l_out = l_in = input.size(2)
-    padding = (((l_out - 1) * stride) - l_in + (dilation * (kernel - 1)) + 1)
-    if padding % 2 != 0:
-        input = F.pad(input, [0, 1])
+class ResNet(Module):
+    def __init__(self, c_in, c_out):
+        nf = 64
+        kss=[7, 5, 3]
+        self.resblock1 = ResBlock(c_in, nf, kss=kss)
+        self.resblock2 = ResBlock(nf, nf * 2, kss=kss)
+        self.resblock3 = ResBlock(nf * 2, nf * 2, kss=kss)
+        self.gap = nn.AdaptiveAvgPool1d(1)
+        self.squeeze = Squeeze(-1)
+        self.fc = nn.Linear(nf * 2, c_out)
 
-    return F.conv1d(input=input, weight=weight, bias=bias, stride=stride,
-                    padding=padding // 2,
-                    dilation=dilation, groups=groups)
+    def forward(self, x):
+        x = self.resblock1(x)
+        x = self.resblock2(x)
+        x = self.resblock3(x)
+        x = self.squeeze(self.gap(x))
+        return self.fc(x)
 
+class SegmentationHead(Module):
+    def __init__(self, ni, nf, c_out, kss=[3, 3, 3]):
+        self.convblock1 = ConvBlock(ni, nf, kss[0])
+        self.convblock2 = ConvBlock(nf, nf, kss[1])
+        self.convblock3 = ConvBlock(nf, c_out, kss[2], act=None)
 
-class ConvBlock(nn.Module):
+    def forward(self, x):
+        x = self.convblock1(x)
+        x = self.convblock2(x)
+        x = self.convblock3(x)
 
-    def __init__(self, in_channels: int, out_channels: int, kernel_size: int,
-                 stride: int) -> None:
-        super().__init__()
+        return x
 
-        self.layers = nn.Sequential(
-            Conv1dSamePadding(in_channels=in_channels,
-                              out_channels=out_channels,
-                              kernel_size=kernel_size,
-                              stride=stride),
-            nn.BatchNorm1d(num_features=out_channels),
-            nn.ReLU(),
-        )
+class SegmentationResnet(Module):
+    def __init__(self, c_in, c_out):
+        nf = 64
+        kss=[7, 5, 3]
+        self.resblock1 = ResBlock(c_in, nf, kss=kss)
+        self.resblock2 = ResBlock(nf, nf * 2, kss=kss)
+        self.resblock3 = ResBlock(nf * 2, nf * 2, kss=kss)
 
-    def forward(self, x: torch.Tensor) -> torch.Tensor:  # type: ignore
+        self.seg_head = SegmentationHead(nf*2, nf, c_out)
 
-        return self.layers(x)
+        self.gap = nn.AdaptiveAvgPool1d(1)
+        self.squeeze = Squeeze(-1)
+        self.fc = nn.Linear(nf * 2, c_out)
 
-class ResNetBaseline(nn.Module):
-    """A PyTorch implementation of the ResNet Baseline
-    From https://arxiv.org/abs/1909.04939
-    Attributes
-    ----------
-    sequence_length:
-        The size of the input sequence
-    mid_channels:
-        The 3 residual blocks will have as output channels:
-        [mid_channels, mid_channels * 2, mid_channels * 2]
-    num_pred_classes:
-        The number of output classes
-    """
-
-    def __init__(self, in_channels: int, mid_channels: int = 64,
-                 num_pred_classes: int = 1) -> None:
-        super().__init__()
-
-        # for easier saving and loading
-        self.input_args = {
-            'in_channels': in_channels,
-            'num_pred_classes': num_pred_classes
-        }
-
-        self.layers = nn.Sequential(*[
-            ResNetBlock(in_channels=in_channels, out_channels=mid_channels),
-            ResNetBlock(in_channels=mid_channels,
-                        out_channels=mid_channels * 2),
-            ResNetBlock(in_channels=mid_channels * 2,
-                        out_channels=mid_channels * 2),
-
-        ])
-        self.final = nn.Linear(mid_channels * 2, num_pred_classes)
-
-    def forward(self, x: torch.Tensor) -> torch.Tensor:  # type: ignore
-        x = self.layers(x)
-        return self.final(x.mean(dim=-1))
-
-class ResNetBlock(nn.Module):
-
-    def __init__(self, in_channels: int, out_channels: int) -> None:
-        super().__init__()
-
-        channels = [in_channels, out_channels, out_channels, out_channels]
-        kernel_sizes = [8, 5, 3]
-
-        self.layers = nn.Sequential(*[
-            ConvBlock(in_channels=channels[i], out_channels=channels[i + 1],
-                      kernel_size=kernel_sizes[i], stride=1) for i in range(len(kernel_sizes))
-        ])
-
-        self.match_channels = False
-        if in_channels != out_channels:
-            self.match_channels = True
-            self.residual = nn.Sequential(*[
-                Conv1dSamePadding(in_channels=in_channels, out_channels=out_channels,
-                                  kernel_size=1, stride=1),
-                nn.BatchNorm1d(num_features=out_channels)
-            ])
-
-    def forward(self, x: torch.Tensor) -> torch.Tensor:  # type: ignore
-
-        if self.match_channels:
-            return self.layers(x) + self.residual(x)
-        return self.layers(x)
+    def forward(self, x):
+        x = self.resblock1(x)
+        x = self.resblock2(x)
+        x1 = self.resblock3(x)
+        x2 = self.squeeze(self.gap(x1))
+        return self.fc(x2), self.seg_head(x1)

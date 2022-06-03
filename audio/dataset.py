@@ -1,12 +1,52 @@
+from functools import partial
+from typing import Tuple
 import torch, numpy as np, librosa
 from torch.utils import data
-import audio_utils
 from joblib import Parallel, delayed
 import pandas as pd
 
 import pickle
 import torch
-            
+
+from lared_laughter.audio import audio_utils
+
+class AudioLaughterExtractor():
+
+    def __init__(self, audios_path, sr=8000, 
+        feature_fn=partial(audio_utils.featurize_melspec, hop_length=186),
+        transform=None):
+        
+        self.audios = pickle.load(open(audios_path, 'rb'))
+        self.sr = sr
+        self.feature_fn = feature_fn
+        self.transform = transform
+
+    def subsample_audio(self, audio, window: Tuple[int, int]):
+        
+        start = round(window[0] * self.sr)
+        end = round(window[1] * self.sr)
+
+        # if the file is too short, pad it with zeros
+        min_samples = end - start
+        if len(audio) < min_samples:
+            audio = np.pad(
+                audio,
+                pad_width=(0, min_samples-len(audio)))
+
+        return audio[start: end]
+
+    def __call__(self, key, start=None, end=None):
+        audio = self.audios[key]
+
+        if start is not None and end is not None:
+            audio = self.subsample_audio(audio, (start, end))
+
+        audio = self.feature_fn(y=audio, sr=self.sr)[None,:,:]
+
+        if self.transform is not None:
+            return self.transform(audio)
+        return audio
+
 class SwitchBoardLaughterDataset(torch.utils.data.Dataset):
     def __init__(self, df, audios, feature_fn, sr, subsample_length=-1, id_column='id', label_column='label'):
         # For training, we should set subsample to True, for val/testing, set to false
