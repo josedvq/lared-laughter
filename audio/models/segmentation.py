@@ -1,3 +1,5 @@
+from collections import OrderedDict
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -64,3 +66,22 @@ class AudioSegmentationResnet(nn.Module):
         assert x.shape[-1] == 1
         x = self.upsample(x)
         return x.squeeze()
+
+def get_pretrained_segmentation_model():
+    model = AudioSegmentationResnet(linear_layer_size=64, filter_sizes=[64,32,16,16])
+    chkpt = torch.load('./pretrained_audioset/audioset-epoch=09-val_loss=0.46.ckpt')
+
+    sd = OrderedDict()
+    for el in chkpt['state_dict']:
+        sd[el[6:]] = chkpt['state_dict'][el]
+
+    model.load_state_dict(sd, strict=False)
+
+    for param in model.parameters():
+        param.requires_grad = False
+        
+    # train the head only
+    for param in model.head.parameters():
+        param.requires_grad = True
+
+    return model

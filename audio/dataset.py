@@ -26,6 +26,8 @@ class AudioLaughterExtractor():
         start = round(window[0] * self.sr)
         end = round(window[1] * self.sr)
 
+        audio = audio[start: end]
+
         # if the file is too short, pad it with zeros
         min_samples = end - start
         if len(audio) < min_samples:
@@ -33,7 +35,7 @@ class AudioLaughterExtractor():
                 audio,
                 pad_width=(0, min_samples-len(audio)))
 
-        return audio[start: end]
+        return audio
 
     def __call__(self, key, start=None, end=None):
         audio = self.audios[key]

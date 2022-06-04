@@ -10,25 +10,21 @@ class VideoExtractor():
     def __init__(
         self,
         videos_path: str,
-        clip_sampler: ClipSampler,
         transform: Optional[Callable[[dict], Any]] = None,
     ) -> None:
         self.videos_path = videos_path
         self.transform = transform
-        self.clip_sampler = clip_sampler
 
         # If a RandomSampler is used we need to pass in a custom random generator that
         # ensures all PyTorch multiprocess workers have the same random seed.
         self._video_random_generator = None
         self.video_path_handler = VideoPathHandler()
 
-    def __getitem__(self, key, start, end) -> dict:
+    def __call__(self, key, start, end) -> dict:
         for i_try in range(self._MAX_CONSECUTIVE_FAILURES):
             
             video = self.video_path_handler.video_from_path(
                 os.path.join(self.videos_path, f'{key}.mp4'),
-                decode_audio=self._decode_audio,
-                decoder=self._decoder,
             )
 
             loaded_clip = video.get_clip(start, end)

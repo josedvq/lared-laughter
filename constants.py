@@ -21,3 +21,5 @@ annot_exp_path = os.path.join(os.environ['PROC_DATA_PATH'], 'lared_laughter', 'a
 datasets_path = os.path.join(os.environ['PROC_DATA_PATH'], 'lared_laughter', 'datasets')
 dataset_path = os.path.join(os.environ['PROC_DATA_PATH'], 'lared_laughter', 'datasets', 'tight')
 
+# models
+models_path = '/mnt/e/data/models'

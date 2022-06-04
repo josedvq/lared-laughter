@@ -8,25 +8,7 @@ import pytorch_lightning
 
 from transforms import get_kinetics_train_transform, get_kinetics_val_transform
 
-def make_slowfast_feature_extractor():
-    model = torch.hub.load('facebookresearch/pytorchvideo', 'slowfast_r50', pretrained=True)
 
-    for param in model.parameters():
-        param.requires_grad = False
-
-    model.blocks[-1].proj = nn.Linear(2304, 2)
-
-    return model
-
-def make_resnet_feature_extractor():
-    model = torch.hub.load('facebookresearch/pytorchvideo', 'slow_r50', pretrained=True)
-
-    for param in model.parameters():
-        param.requires_grad = False
-
-    model.blocks[-1].proj = nn.Linear(2048, 2)
-
-    return model
 
 def get_metrics(outputs, labels, type='binary'):
     if type == 'binary':
