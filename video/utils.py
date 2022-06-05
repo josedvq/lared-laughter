@@ -6,7 +6,7 @@ import torch.nn as nn
 import pytorchvideo
 import pytorch_lightning
 
-from transforms import get_kinetics_train_transform, get_kinetics_val_transform
+from dataset.transforms import get_kinetics_train_transform, get_kinetics_val_transform
 
 
 
