@@ -68,13 +68,13 @@ class SegmentationResnet(Module):
 
         self.seg_head = SegmentationHead(nf*2, nf, c_out)
 
-        self.gap = nn.AdaptiveAvgPool1d(1)
-        self.squeeze = Squeeze(-1)
-        self.fc = nn.Linear(nf * 2, c_out)
+        # self.gap = nn.AdaptiveAvgPool1d(1)
+        # self.squeeze = Squeeze(-1)
+        # self.fc = nn.Linear(nf * 2, c_out)
 
     def forward(self, x):
         x = self.resblock1(x)
         x = self.resblock2(x)
         x1 = self.resblock3(x)
-        x2 = self.squeeze(self.gap(x1))
-        return self.fc(x2), self.seg_head(x1)
+        # x2 = self.squeeze(self.gap(x1))
+        return self.seg_head(x1)

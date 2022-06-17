@@ -5,6 +5,14 @@ import librosa.display
 from sklearn.metrics import roc_auc_score
 import matplotlib.pyplot as plt
 
+def ious(mask, gt_mask):
+    mask_area = np.count_nonzero(mask == 1, axis=1)
+    gt_mask_area = np.count_nonzero(gt_mask == 1, axis=1)
+    intersection = np.count_nonzero( np.logical_and( mask, gt_mask ), axis=1 )
+    ious = np.divide(intersection, (mask_area + gt_mask_area - intersection))
+    ious[(gt_mask_area == 0) & (mask_area == 0)] = 1
+    return ious
+
 def _plot_audio_sample(sample, ax):
     librosa.display.specshow(sample['audio'].squeeze().transpose(), 
                          x_axis='time',

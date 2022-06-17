@@ -43,9 +43,18 @@ class SegmentationHead(nn.Module):
         return x.squeeze()
 
 
-def make_slow_pretrained_segmenter(output_size=90):
+def make_slow_pretrained_segmenter(output_size=60):
     cfg = _get_resnet_cfg()
     model = PTVResNet(cfg, head=SegmentationHead(output_size))
+
+    chckpt = torch.load(os.path.join(models_path, 'SLOW_8x8_R50.pyth'))
+
+    model.load_state_dict(chckpt['model_state'], strict=False)
+    for param in model.parameters():
+        param.requires_grad = False
+
+    for param in model.head.parameters():
+        param.requires_grad = True
 
     return model
 
