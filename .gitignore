@@ -1,7 +1,8 @@
 *.covfee.db
 *.workspace
-annotation/www/artificial_examples
-annotation/www/laughter_examples
+annotation/www/**/*.mp4
+annotation/www/**/*.wav
+annotation/www/**/*.jpg
 annotation/www/*.js
 *.log
 *.pyc
