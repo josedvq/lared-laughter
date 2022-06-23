@@ -3,7 +3,7 @@ import os
 # paths to raw datasets
 raw_data_path = os.path.join(os.environ['RAW_DATA_PATH'], 'lared')
 # audio_path = os.path.join(raw_data_path, 'audio')
-raw_audio_path = os.path.join(raw_data_path, 'audio', 'trimmed')
+raw_audio_path = os.path.join(raw_data_path, 'audio', 'normalized')
 vad_audio_path = os.path.join(raw_data_path, 'audio', 'vad')
 raw_video_path = os.path.join(raw_data_path, 'video', 'concatenated')
 audioset_data_path = os.path.join(os.environ['RAW_DATA_PATH'], 'audioset')
