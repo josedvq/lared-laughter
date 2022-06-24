@@ -17,7 +17,7 @@ processed_data_path = os.path.join(os.environ['PROC_DATA_PATH'], 'lared_laughter
 pilot_path = os.path.join(os.environ['PROC_DATA_PATH'], 'lared_laughter', 'annotation_pilot')
 
 # annotation experiment paths
-annot_exp_path = os.path.join(os.environ['PROC_DATA_PATH'], 'lared_laughter', 'annotation_experiment')
+annot_exp_path = os.path.join(os.environ['PROC_DATA_PATH'], 'lared_laughter', 'annotation_experiment_2')
 
 # dataset paths
 datasets_path = os.path.join(os.environ['PROC_DATA_PATH'], 'lared_laughter', 'datasets')
