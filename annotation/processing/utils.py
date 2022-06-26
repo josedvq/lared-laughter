@@ -10,18 +10,45 @@ from natsort import natsorted
 
 class CovfeeParser:
 
-    def __init__(self, laughter_examples, speech_examples, calibration_examples):
+    def __init__(self, laughter_examples, speech_examples, calibration_examples, hits):
         self.laughter_examples = laughter_examples
         self.speech_examples = speech_examples
         self.calibration_examples = calibration_examples
+        
+        self.hits = hits
 
-    def parse_v1(self, results_path):
-        all_results = []
-        hit_info = []
+
+    def _get_hit_for_results(self, results):
+        target = [t for t in results['tasks'].values() if t['gt_laughter']][0]
+        target_hash = target['hash']
+        target_condition = target['condition']
+
+        def find_in_task(t):
+            if t['type'] == 'shuffle':
+                return any([find_in_task(t) for tg in t['tasks'] for t in tg])
+            elif t['name'] == 'Recognition':
+                parts = t['id'].split('_')
+                hash = parts[1]
+                condition = parts[2]
+
+                return ((hash == target_hash) & (condition == target_condition))
+
+        def find_in_hit(hit):
+            return any([find_in_task(t) for t in hit['tasks']])
+
+        found = [find_in_hit(hit) for hit in self.hits['hits']]
+        assert np.sum(found) == 1
+
+        hit_idx = np.where(found)[0][0]
+        return self.hits['hits'][hit_idx]
+        
+
+    def parse_v1(self, results_path, data_col='data0', version=1):
+        all_results = {}
 
         p = Path(results_path)
         for i_dir, dir in enumerate(p.iterdir()):
-            hit_id = os.path.basename(dir)
+            instance_id = str(version) + '_' + os.path.basename(dir)
             results_dict = {}
             continuous_annotations = {}
 
@@ -38,11 +65,7 @@ class CovfeeParser:
             assert 'Feedback' in str(hitfiles[-1]), f'Feedback not in {str(hitfiles[-1])}'
             feedback = json.load(open(hitfiles[-1]))
 
-            hit_info.append({
-                'duration': duration,
-                'rating': feedback['response']['rating'],
-                'feedback': feedback['response']['feedback']
-            })
+            
 
             # read the JSON (rating) files
             for i_file, json_file in enumerate(dir.glob('*.json')):
@@ -84,7 +107,7 @@ class CovfeeParser:
                 results_dict[example_hash] = {
                     'person': example['pid'], 
                     'cam': example['cam'],
-                    'hit_id': hit_id, 
+                    'instance_id': instance_id, 
                     'condition': condition,
                     'calibration': calibration,
                     'hash': example_hash,
@@ -96,13 +119,12 @@ class CovfeeParser:
                     'gt_offset': example['offset_time'],
                     'gt_laughter': gt_laughter,
                     'is_laughter': json_res.get('laughter', True),
-                    'confidence': json_res.get('confidence', 4),
-                    'intensity': json_res.get('intensity', 4)
+                    'confidence': json_res.get('confidence', None),
+                    'intensity': json_res.get('intensity', None)
                 }
                 num_segments += 1
 
             # read the CSV (continuous) files
-
             csv_files = [f for f in dir.glob('*.csv')]
             for csv_file in sorted(csv_files):
                 fname = os.path.basename(csv_file).split('.')[0]
@@ -117,27 +139,96 @@ class CovfeeParser:
 
                 if (cont_data['media_time'] == 0).all():
                     # skip invalid continuous annotations
-                    print(f'media_time  all zeroes for {csv_file}')
+                    # print(f'media_time  all zeroes for {csv_file}')
                     continue
-                pressed_key = cont_data['data0'].any()
+                pressed_key = cont_data[data_col].any()
 
                 results_dict[example_hash] = {
                     **results_dict[example_hash],
                     'has_continuous': True,
                     'attempt': attempt,
                     'pressed_key': pressed_key,
-                    'onset': cont_data[cont_data['data0'] == 1].iloc[0]['media_time'] if pressed_key else None,
-                    'offset': cont_data[cont_data['data0'] == 1].iloc[-1]['media_time'] if pressed_key else None
+                    'onset': cont_data[cont_data[data_col] == 1].iloc[0]['media_time'] if pressed_key else None,
+                    'offset': cont_data[cont_data[data_col] == 1].iloc[-1]['media_time'] if pressed_key else None
                 }
 
-                continuous_annotations[example_hash] = cont_data[['media_time', 'data0']]
+                continuous_annotations[example_hash] = cont_data[['media_time', data_col]]
+                continuous_annotations[example_hash] = continuous_annotations[example_hash].rename(columns={data_col: 'data'})
 
-            all_results.append({'hit':hit_id ,'processed': results_dict, 'continuous': continuous_annotations})
-            print(f'HIT {hit_id}, segments: {num_segments}')
+            res = {
+                'hit':instance_id ,
+                'version': version,
+                'tasks': results_dict, 
+                'continuous': continuous_annotations,
+                'duration': duration,
+                'rating': feedback['response']['rating'],
+                'feedback': feedback['response']['feedback']
+            }
+            hit_data = self._get_hit_for_results(res)
+            hit_name = hit_data['name']
+            hit_group = hit_name[1]
+            hit_num   = hit_name[-1]
+            for t in res['tasks'].values():
+                t['G'] = hit_group
+                t['N'] = hit_num
 
-        return all_results, hit_info
+            all_results[instance_id] = {
+                'hit_name': hit_name,
+                'hit_group': hit_group,
+                'hit_num': hit_num,
+                **res
+            }
+            # print(f'HIT {instance_id}, segments: {num_segments}')
 
-def interp_30fps(df, example_len):
+        return all_results
+
+    def parse_v2(self, results_path):
+        return self.parse_v1(results_path, data_col='data1', version='2')
+
+def count_elements(seq) -> dict:
+    """Tally elements from `seq`."""
+    hist = {i: 0 for i in range(1,8)}
+    for i in seq:
+        hist[i] = hist[i] + 1
+    return hist        
+
+def get_hit_stats(hit):
+    ''' Filter hits that are completely invalid and return them separately
+    '''
+    valid_hits = {}
+    invalid_hits = {}
+
+    tasks = [t for t in hit['tasks'].values() if not t['calibration']]
+    num_tasks = len(tasks)
+    num_with_continuous = np.sum([t.get('has_continuous', False) for t in tasks])
+
+    num_pressed_key = np.sum([t.get('pressed_key', False) for t in tasks
+                            if t.get('has_continuous', False)])
+
+    num_is_laughter = np.sum([t.get('is_laughter', False) for t in tasks])
+    num_intensity_not_none = np.sum([t['intensity'] is not None for t in tasks])
+    intensities = count_elements([t['intensity'] for t in tasks if (t['is_laughter'] and t['intensity'] is not None)])
+    confidences = count_elements([t['confidence'] for t in tasks if t['confidence'] is not None])
+
+    hit_group = hit["hit_name"][1]
+    hit_num   = hit["hit_name"][-1]
+
+    return {
+        'id': f'{hit["hit"][:8]}',
+        # 'hit_name': hit["hit_name"],
+        'hit_group': hit_group,
+        'hit_num': hit_num,
+        'cont': f'{num_with_continuous}/{num_tasks}',
+        'pressed': f'{num_pressed_key}/{num_with_continuous}',
+        'is_laughter': f'{num_is_laughter}/{num_tasks}',
+        'intensity_not_none': f'{num_intensity_not_none}/{num_tasks}',
+        'intensities': '-'.join([f'{c:02d}' for c in intensities.values()]),
+        'confidences': '-'.join([f'{c:02d}' for c in confidences.values()]),
+        'duration': hit['duration'],
+        'rating': hit['rating']
+    }
+
+def interp_30fps(df, example_len, data_column='data'):
     sel = df['media_time'] != 0
     sel[0] = True
     df = df[sel]
@@ -145,7 +236,7 @@ def interp_30fps(df, example_len):
     if len(df) == 0:
         raise Exception()
 
-    f = interp1d(df['media_time'].to_numpy(), df['data0'].to_numpy(),
+    f = interp1d(df['media_time'].to_numpy(), df[data_column].to_numpy(),
         kind='nearest',
         fill_value='extrapolate')
     x = np.arange(0, example_len, 1/30)
