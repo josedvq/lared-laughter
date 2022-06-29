@@ -1,9 +1,18 @@
 import torch
 import numpy as np
+import pandas as pd
 import librosa.display
 
 from sklearn.metrics import roc_auc_score
 import matplotlib.pyplot as plt
+
+def load_examples(path):
+    df = pd.read_csv(path)
+    if 'onset_times' in df.columns:
+        df['onset_times'] = [eval(el) for el in df['onset_times']]
+    if 'offset_times' in df.columns:
+        df['offset_times'] = [eval(el) for el in df['offset_times']]
+    return df
 
 def ious(mask, gt_mask):
     mask_area = np.count_nonzero(mask == 1, axis=1)

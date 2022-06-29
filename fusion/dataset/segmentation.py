@@ -26,7 +26,7 @@ class SegmentationDataset(torch.utils.data.Dataset):
         self.transform = transform
 
     def _get_label_key(self, x):
-        return (x['hit_id'], x['hash'], x['condition'])
+        return (x['instance_id'], x['hash'], x['condition'])
 
     def _subsample(self, seg_mask):
         if np.count_nonzero(seg_mask) > 0:

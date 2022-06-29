@@ -12,42 +12,51 @@ from lared_laughter.audio import audio_utils
 
 class AudioLaughterExtractor():
 
-    def __init__(self, audios_path, sr=8000, 
+    def __init__(self, audios_path, sr=8000, min_len=None, max_len=None,
         feature_fn=partial(audio_utils.featurize_melspec, hop_length=186),
         transform=None):
         
         self.audios = pickle.load(open(audios_path, 'rb'))
         self.sr = sr
+
+        if min_len is not None and max_len is not None:
+            assert max_len >= min_len
+        self.min_samples = round(sr*min_len) if min_len is not None else None # convert to samples
+        self.max_samples = round(sr*max_len) if max_len is not None else None
+
         self.feature_fn = feature_fn
         self.transform = transform
 
-    def subsample_audio(self, audio, window: Tuple[int, int]):
+    def _subsample_audio(self, audio, window: Tuple[int, int]):
         
-        start = round(window[0] * self.sr)
-        end = round(window[1] * self.sr)
+        start = max(0, round(window[0] * self.sr))
+        end = min(len(audio), round(window[1] * self.sr))
 
         audio = audio[start: end]
-
-        # if the file is too short, pad it with zeros
-        min_samples = end - start
-        if len(audio) < min_samples:
-            audio = np.pad(
-                audio,
-                pad_width=(0, min_samples-len(audio)))
 
         return audio
 
     def __call__(self, key, start=None, end=None):
+        assert (start is None and end is None) or (start is not None and end is not None)
         audio = self.audios[key]
 
         if start is not None and end is not None:
-            audio = self.subsample_audio(audio, (start, end))
+            audio = self._subsample_audio(audio, (start, end))
 
-        audio = self.feature_fn(y=audio, sr=self.sr)[None,:,:]
+        # if the file is too short, pad it with zeros
+        if self.min_samples is not None and len(audio) < self.min_samples:
+            audio = np.pad(
+                audio,
+                pad_width=(0, self.min_samples-len(audio)))
+
+        if self.max_samples is not None and len(audio) > self.max_samples:
+            audio = audio[:self.max_samples]
+
+        features = self.feature_fn(y=audio, sr=self.sr)[None,:,:]
 
         if self.transform is not None:
-            return self.transform(audio)
-        return audio
+            return self.transform(features)
+        return features
 
 class SwitchBoardLaughterDataset(torch.utils.data.Dataset):
     def __init__(self, df, audios, feature_fn, sr, subsample_length=-1, id_column='id', label_column='label'):

@@ -4,10 +4,10 @@ import pytorch_lightning as pl
 from sklearn.metrics import roc_auc_score
 
 from lared_laughter.accel.models.cnn import MyAlexNet
-from lared_laughter.accel.models.resnet import ResNet, SegmentationResnet
+from lared_laughter.accel.models.resnet import ResNet
 
 class System(pl.LightningModule):
-    def __init__(self, model_name, model_hparams={}, optimizer_name='adam', optimizer_hparams={}):
+    def __init__(self, model_name, task='classification', model_hparams={}, optimizer_name='adam', optimizer_hparams={}):
         """
         Inputs:
             model_name - Name of the model/CNN to run. Used for creating the model (see function below)
@@ -25,19 +25,29 @@ class System(pl.LightningModule):
             'resnet': ResNet(c_in=3, c_out=1)
         }[model_name]
 
+        self.loss_fn = {
+            'classification':F.binary_cross_entropy_with_logits,
+            'regression': F.l1_loss
+        }[task]
+
+        self.performance_metric = {
+            'classification': lambda input, target: roc_auc_score(target, input),
+            'regression': F.l1_loss
+        }[task]
+
     def forward(self, batch):
         # in lightning, forward defines the prediction/inference actions
-        return self.model(batch['accel'].permute(0, 2, 1).float())
+        return self.model(batch['accel'])
 
     def training_step(self, batch, batch_idx):
         # training_step defined the train loop.
         # It is independent of forward
 
-        X = batch['accel'].permute(0, 2, 1).float()
+        X = batch['accel']
         Y = batch['label'].float()
 
         output = self.model(X).squeeze()
-        loss = F.binary_cross_entropy_with_logits(output, Y)
+        loss = self.loss_fn(output, Y)
 
         # Logging to TensorBoard by default
         self.log("train_loss", loss)
@@ -48,11 +58,11 @@ class System(pl.LightningModule):
         return optimizer
 
     def validation_step(self, batch, batch_idx):
-        X = batch['accel'].permute(0, 2, 1).float()
+        X = batch['accel']
         Y = batch['label'].float()
 
         output = self.model(X).squeeze()
-        val_loss = F.binary_cross_entropy_with_logits(output, Y)
+        val_loss = self.loss_fn(output, Y)
         self.log('val_loss', val_loss)
 
         return (output, Y.squeeze())
@@ -61,11 +71,11 @@ class System(pl.LightningModule):
         all_outputs = torch.cat([o[0] for o in validation_step_outputs]).cpu()
         all_labels = torch.cat([o[1] for o in validation_step_outputs]).cpu()
 
-        val_auc = roc_auc_score(all_labels, all_outputs)
-        self.log('val_auc', val_auc)
+        val_metric = self.performance_metric(all_outputs, all_labels)
+        self.log('val_metric', val_metric)
 
     def test_step(self, batch, batch_idx):
-        X = batch['accel'].permute(0, 2, 1).float()
+        X = batch['accel']
         Y = batch['label'].float()
 
         output = self.model(X).squeeze()
@@ -76,7 +86,7 @@ class System(pl.LightningModule):
         all_outputs = torch.cat([o[0] for o in test_step_outputs]).cpu()
         all_labels = torch.cat([o[1] for o in test_step_outputs]).cpu()
 
-        test_auc = roc_auc_score(all_labels, all_outputs)
-        self.test_results = {'auc': test_auc, 'proba': all_outputs}
-        self.log('test_auc', test_auc)
+        test_metric = self.performance_metric(all_outputs, all_labels)
+        self.test_results = {'metric': test_metric, 'proba': all_outputs}
+        self.log('test_metric', test_metric)
 

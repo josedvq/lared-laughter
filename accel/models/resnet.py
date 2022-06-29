@@ -27,8 +27,8 @@ class ResBlock(Module):
         x = self.act(x)
         return x
 
-class ResNet(Module):
-    def __init__(self, c_in, c_out):
+class ResNetBody(Module):
+    def __init__(self, c_in):
         nf = 64
         kss=[7, 5, 3]
         self.resblock1 = ResBlock(c_in, nf, kss=kss)
@@ -36,13 +36,22 @@ class ResNet(Module):
         self.resblock3 = ResBlock(nf * 2, nf * 2, kss=kss)
         self.gap = nn.AdaptiveAvgPool1d(1)
         self.squeeze = Squeeze(-1)
-        self.fc = nn.Linear(nf * 2, c_out)
 
     def forward(self, x):
         x = self.resblock1(x)
         x = self.resblock2(x)
         x = self.resblock3(x)
         x = self.squeeze(self.gap(x))
+        return x
+
+class ResNet(Module):
+    def __init__(self, c_in, c_out):
+        nf = 64
+        self.body = ResNetBody(c_in)
+        self.fc = nn.Linear(nf * 2, c_out)
+
+    def forward(self, x):
+        x = self.body(x)
         return self.fc(x)
 
 class SegmentationHead(Module):

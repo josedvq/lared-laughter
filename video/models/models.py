@@ -42,36 +42,54 @@ class SegmentationHead(nn.Module):
         x = self.upsample(x)
         return x.squeeze()
 
-
-def make_slow_pretrained_segmenter(output_size=60):
+def _make_pretrained_slow(head):
     cfg = _get_resnet_cfg()
-    model = PTVResNet(cfg, head=SegmentationHead(output_size))
+    model = PTVResNet(cfg, head=head)
 
     chckpt = torch.load(os.path.join(models_path, 'SLOW_8x8_R50.pyth'))
 
-    model.load_state_dict(chckpt['model_state'], strict=False)
+    res = model.load_state_dict(chckpt['model_state'], strict=False)
+    print(f'loaded pre-trained model')
+    print(f'missing keys {str(res.missing_keys)}')
+    print(f'unexpected keys {str(res.unexpected_keys)}')
+
     for param in model.parameters():
         param.requires_grad = False
+
+    return model
+
+def make_slow_pretrained_body():
+    return _make_pretrained_slow(head=
+        nn.AvgPool3d(kernel_size=(8, 7, 7), stride=(1, 1, 1), padding=(0, 0, 0)))
+
+    
+def make_slow_pretrained_classifier():
+    return _make_pretrained_slow(head=None)
+
+
+def make_slow_pretrained_segmenter(output_size=60):
+    model = _make_pretrained_slow(head=SegmentationHead(output_size))
 
     for param in model.head.parameters():
         param.requires_grad = True
 
     return model
+    
+    # cfg = _get_resnet_cfg()
+    # model = PTVResNet(cfg, head=SegmentationHead(output_size))
 
-def make_resnet_pretrained_classifier():
+    # chckpt = torch.load(os.path.join(models_path, 'SLOW_8x8_R50.pyth'))
 
-    cfg = _get_resnet_cfg()
-    model = PTVResNet(cfg)
+    # model.load_state_dict(chckpt['model_state'], strict=False)
+    # for param in model.parameters():
+    #     param.requires_grad = False
 
-    chckpt = torch.load(os.path.join(models_path, 'SLOW_8x8_R50.pyth'))
+    # for param in model.head.parameters():
+    #     param.requires_grad = True
 
-    model.load_state_dict(chckpt['model_state'])
-    for param in model.parameters():
-        param.requires_grad = False
+    # return model
 
-    model.model.blocks[-1].proj = nn.Linear(2048, 2)
 
-    return model
 
 def make_slowfast_pretrained_classifier():
 
@@ -89,25 +107,5 @@ def make_slowfast_pretrained_classifier():
         param.requires_grad = False
 
     model.model.blocks[-1].proj = nn.Linear(2304, 2)
-
-    return model
-
-def make_slowfast_feature_extractor():
-    model = torch.hub.load('facebookresearch/pytorchvideo', 'slowfast_r50', pretrained=True)
-
-    for param in model.parameters():
-        param.requires_grad = False
-
-    model.blocks[-1].proj = nn.Linear(2304, 2)
-
-    return model
-
-def make_resnet_feature_extractor():
-    model = torch.hub.load('facebookresearch/pytorchvideo', 'slow_r50', pretrained=True)
-
-    for param in model.parameters():
-        param.requires_grad = False
-
-    model.blocks[-1].proj = nn.Linear(2048, 2)
 
     return model
