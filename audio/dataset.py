@@ -4,17 +4,34 @@ import torch, numpy as np, librosa
 from torch.utils import data
 from joblib import Parallel, delayed
 import pandas as pd
+import joblib
 
 import pickle
 import torch
 
 from lared_laughter.audio import audio_utils
 
+def _extract_features( audio, sr, feature_fn, min_samples=None, max_samples=None, transform=None):
+        # if the file is too short, pad it with zeros
+        if min_samples is not None and len(audio) < min_samples:
+            audio = np.pad(
+                audio,
+                pad_width=(0, min_samples-len(audio)))
+
+        if max_samples is not None and len(audio) > max_samples:
+            audio = audio[:max_samples]
+
+        features = feature_fn(y=audio, sr=sr)[None,:,:]
+
+        if transform is not None:
+            return transform(features)
+        return features
+
 class AudioLaughterExtractor():
 
     def __init__(self, audios_path, sr=8000, min_len=None, max_len=None,
         feature_fn=partial(audio_utils.featurize_melspec, hop_length=186),
-        transform=None):
+        transform=None, n_jobs=1):
         
         self.audios = pickle.load(open(audios_path, 'rb'))
         self.sr = sr
@@ -26,6 +43,7 @@ class AudioLaughterExtractor():
 
         self.feature_fn = feature_fn
         self.transform = transform
+        self.n_jobs = n_jobs
 
     def _subsample_audio(self, audio, window: Tuple[int, int]):
         
@@ -57,6 +75,30 @@ class AudioLaughterExtractor():
         if self.transform is not None:
             return self.transform(features)
         return features
+
+    def extract_multiple(self, keys):
+        audios = [self.audios[k[0]] for k in keys]
+
+        for i, (_, start, end) in enumerate(keys):
+            assert (start is None and end is None) or (start is not None and end is not None)
+
+            if start is not None and end is not None:
+                audios[i] = self._subsample_audio(audios[i], (start, end))
+
+        # parallel feature extraction
+        # audio, sr, feature_fn, min_samples=None, max_samples=None, transform=None
+        features = Parallel(n_jobs=self.n_jobs)(
+            delayed(_extract_features)(
+                audio,
+                sr=self.sr,
+                feature_fn = self.feature_fn,
+                min_samples = self.min_samples,
+                max_samples = self.max_samples,
+                transform = self.transform
+            ) for audio in audios)
+        return np.stack(features)
+        
+        # return np.stack([self(*k) for k in keys])
 
 class SwitchBoardLaughterDataset(torch.utils.data.Dataset):
     def __init__(self, df, audios, feature_fn, sr, subsample_length=-1, id_column='id', label_column='label'):

@@ -8,7 +8,7 @@ from torch.distributions.categorical import Categorical
 
 class ResidualBlock(nn.Module):
     def __init__(self, in_channels, out_channels, stride=1, padding=1):
-        super(ResidualBlock, self).__init__()
+        super().__init__()
         
         # Conv Layer 1
         self.conv1 = nn.Conv2d(
@@ -48,7 +48,7 @@ class ResidualBlock(nn.Module):
 class ResNetBody(nn.Module):
     def __init__(self,
         filter_sizes=[64,32,16,16]):
-        super(ResNetBody, self).__init__()
+        super().__init__()
 
         # Initial input conv
         self.conv1 = nn.Conv2d(

@@ -30,11 +30,14 @@ class AccelExtractor():
         accel = accel[:, start: end]
         return accel
 
-    def __call__(self, key, start=None, end=None):
+    def extract_multiple(self, keys):
+        return np.stack([self(*k) for k in keys])
+
+    def __call__(self, hash, start=None, end=None):
         assert (start is None and end is None) or (start is not None and end is not None)
 
         try:
-            example_accel = self.accel[key].transpose().astype(np.float32)
+            example_accel = self.accel[hash].transpose().astype(np.float32)
         except KeyError as err:
             if self.min_samples is not None:
                 # return a large blank example when there is no accel.
@@ -43,13 +46,7 @@ class AccelExtractor():
                 raise err
 
         if start is not None and end is not None:
-            if type(start) == list and type(end) == list:
-                assert len(start) == len(end)
-                
-                chunks = [self._subsample(example_accel, (s, e)) for s, e in zip(start, end)]
-                example_accel = np.concatenate(chunks, axis=1)
-            else:
-                example_accel = self._subsample(example_accel, (start, end))
+            example_accel = self._subsample(example_accel, (start, end))
 
         if self.min_samples is not None and example_accel.shape[1] < self.min_samples:
             example_accel = np.pad(example_accel, 

@@ -27,7 +27,7 @@ class MyAlexNet(nn.Module):
     F3 - 192 > 1
     """
     def __init__(self):
-        super(MyAlexNet, self).__init__()
+        super().__init__()
 
         self.convnet = nn.Sequential(OrderedDict([
             ('c1', nn.Conv1d(3, 24, kernel_size=5)),
@@ -87,7 +87,7 @@ class LeNet5(nn.Module):
     F7 - 10 (Output)
     """
     def __init__(self):
-        super(LeNet5, self).__init__()
+        super().__init__()
 
         self.convnet = nn.Sequential(OrderedDict([
             ('c1', nn.Conv1d(3, 18, kernel_size=5)),

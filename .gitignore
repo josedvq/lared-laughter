@@ -1,9 +1,6 @@
 *.covfee.db
 *.workspace
-annotation/www/**/*.mp4
-annotation/www/**/*.wav
-annotation/www/**/*.jpg
-annotation/www/*.js
+annotation/www/**/*
 *.log
 *.pyc
 **/*/lightning_logs
@@ -11,3 +8,4 @@ annotation/www/*.js
 **/*.ckpt
 video/features
 audio/features
+fusion/cache/**/*

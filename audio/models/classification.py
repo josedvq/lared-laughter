@@ -10,7 +10,7 @@ from .resnet import ResNetBody
 
 class ResNetClassifier(nn.Module):
     def __init__(self, num_classes=1,dropout_rate=0.5,linear_layer_size=192,filter_sizes=[64,32,16,16]):
-        super(ResNetClassifier, self).__init__()
+        super().__init__()
         print(f"training with dropout={dropout_rate}")
         
         self.body = ResNetBody(filter_sizes=filter_sizes)
