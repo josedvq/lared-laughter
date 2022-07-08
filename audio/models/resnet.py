@@ -101,3 +101,42 @@ def get_pretrained_body():
         param.requires_grad = False
 
     return model
+
+class AudioSegmentationHead(nn.Module):
+    def __init__(self, num_channels, output_len, num_classes=1):
+        super().__init__()
+        self.head = nn.Sequential(
+            ResidualBlock(num_channels, 8, stride=(1,2)),
+            ResidualBlock(8, num_classes, stride=(1,2)),
+            nn.AvgPool2d((1,4), stride=1),
+        )
+
+        self.upsample = nn.Sequential(
+            nn.Flatten(start_dim=2),
+            nn.Upsample(size=(output_len), mode='linear')
+        )
+
+    def forward(self, x):
+        x = self.head(x)
+        # at this point the output should have size=1 along the mel dimension
+        assert x.shape[-1] == 1
+        x = self.upsample(x)
+        return x.squeeze()
+
+
+class AudioSegmentationResnet(nn.Module):
+    def __init__(self,
+        num_classes=1,
+        dropout_rate=0.5,
+        filter_sizes=[64,32,16,16],
+        output_size=60):
+        super().__init__()
+
+        self.body = ResNetBody(filter_sizes=filter_sizes)
+
+        self.head = AudioSegmentationHead(filter_sizes[3], num_classes)
+    
+    def forward(self, x):
+        x = self.body(x)
+        x = self.head(x)
+        return x

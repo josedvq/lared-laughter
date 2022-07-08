@@ -29,17 +29,17 @@ def _plot_audio_sample(sample, ax):
                          hop_length=186,
                          fmax=8000, ax=ax)
 
-    m = np.concatenate([[0], sample['seg_mask']])
+    m = np.concatenate([[0], sample['label']])
     ini_idx = np.where(np.diff(m) == 1)[0] - 1
 
-    m = np.concatenate([sample['seg_mask'], [0]])
+    m = np.concatenate([sample['label'], [0]])
     end_idx = np.where(np.diff(m) == -1)[0]
     assert len(ini_idx) == len(end_idx)
 
     t_max = ax.get_xlim()[1]
     for i, j in zip(ini_idx, end_idx):
-        i_t = t_max * i / len(sample['seg_mask'])
-        j_t = t_max * j / len(sample['seg_mask'])
+        i_t = t_max * i / len(sample['label'])
+        j_t = t_max * j / len(sample['label'])
         ax.axvspan(i_t, j_t, color='red', alpha=0.2)
 
 def plot_audio(samples):
@@ -52,7 +52,7 @@ def _plot_accel_sample(sample, ax):
     ax.plot(sample['accel'][1,:])
     ax.plot(sample['accel'][2,:])
 
-    ax.plot(sample['seg_mask'])
+    ax.plot(sample['label'])
 
 def plot_accel(samples):
     fig, axs = plt.subplots(1,len(samples), figsize=(12,4))

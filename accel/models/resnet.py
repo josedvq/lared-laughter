@@ -1,3 +1,4 @@
+from re import X
 import torch
 from torch import nn
 import torch.nn.functional as F
@@ -27,20 +28,29 @@ class ResBlock(Module):
         x = self.act(x)
         return x
 
-class ResNetBody(Module):
+class ResNetBodyNoChannelPool(Module):
     def __init__(self, c_in):
         nf = 64
         kss=[7, 5, 3]
         self.resblock1 = ResBlock(c_in, nf, kss=kss)
         self.resblock2 = ResBlock(nf, nf * 2, kss=kss)
         self.resblock3 = ResBlock(nf * 2, nf * 2, kss=kss)
-        self.gap = nn.AdaptiveAvgPool1d(1)
-        self.squeeze = Squeeze(-1)
 
     def forward(self, x):
         x = self.resblock1(x)
         x = self.resblock2(x)
         x = self.resblock3(x)
+        return x
+
+
+class ResNetBody(Module):
+    def __init__(self, c_in):
+        self.body = ResNetBodyNoChannelPool(c_in)
+        self.gap = nn.AdaptiveAvgPool1d(1)
+        self.squeeze = Squeeze(-1)
+
+    def forward(self, x):
+        x = self.body(x)
         x = self.squeeze(self.gap(x))
         return x
 
@@ -55,35 +65,32 @@ class ResNet(Module):
         return self.fc(x)
 
 class SegmentationHead(Module):
-    def __init__(self, ni, nf, c_out, kss=[3, 3, 3]):
-        self.convblock1 = ConvBlock(ni, nf, kss[0])
-        self.convblock2 = ConvBlock(nf, nf, kss[1])
-        self.convblock3 = ConvBlock(nf, c_out, kss[2], act=None)
+    def __init__(self, c_out, output_len, kss=[3, 3, 3]):
+        self.convblock1 = ConvBlock(128, 64, kss[0])
+        self.convblock2 = ConvBlock(64, 64, kss[1])
+        self.convblock3 = ConvBlock(64, c_out, kss[2], act=None)
+
+        self.upsample = nn.Sequential(
+            nn.Flatten(start_dim=2),
+            nn.Upsample(size=(output_len), mode='linear')
+        )
+
 
     def forward(self, x):
         x = self.convblock1(x)
         x = self.convblock2(x)
         x = self.convblock3(x)
 
-        return x
+        x = self.upsample(x)
+
+        return x.squeeze()
 
 class SegmentationResnet(Module):
     def __init__(self, c_in, c_out):
         nf = 64
-        kss=[7, 5, 3]
-        self.resblock1 = ResBlock(c_in, nf, kss=kss)
-        self.resblock2 = ResBlock(nf, nf * 2, kss=kss)
-        self.resblock3 = ResBlock(nf * 2, nf * 2, kss=kss)
-
+        self.body = ResNetBodyNoChannelPool(c_in)
         self.seg_head = SegmentationHead(nf*2, nf, c_out)
 
-        # self.gap = nn.AdaptiveAvgPool1d(1)
-        # self.squeeze = Squeeze(-1)
-        # self.fc = nn.Linear(nf * 2, c_out)
-
     def forward(self, x):
-        x = self.resblock1(x)
-        x = self.resblock2(x)
-        x1 = self.resblock3(x)
-        # x2 = self.squeeze(self.gap(x1))
-        return self.seg_head(x1)
+        x = self.body(x)
+        return self.seg_head(x)

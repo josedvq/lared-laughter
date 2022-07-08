@@ -8,22 +8,28 @@ from sklearn.metrics import roc_auc_score
 from torch.utils.data.dataloader import DataLoader
 from torch.utils.data.sampler import BatchSampler, RandomSampler, SequentialSampler
 
-from .model import FusionModel
+from .model import FusionModel, SegmentationFusionModel
 
 class System(pl.LightningModule):
     def __init__(self, modalities, task='classification'):
         super().__init__()
         self.save_hyperparameters()
        
-        self.model = FusionModel(modalities)
+        if task == 'segmentation':
+            self.model = SegmentationFusionModel(modalities)
+        else:
+            self.model = FusionModel(modalities)
+
         self.loss_fn = {
             'classification':F.binary_cross_entropy_with_logits,
-            'regression': F.l1_loss
+            'regression': F.mse_loss,
+            'segmentation':F.binary_cross_entropy_with_logits,
         }[task]
 
         self.performance_metric = {
-            'classification': lambda input, target: roc_auc_score(target, input),
-            'regression': F.l1_loss
+            'classification': lambda input, target: roc_auc_score(target.flatten(), input.flatten()),
+            'regression': F.mse_loss,
+            'segmentation': lambda input, target: roc_auc_score(target.flatten(), input.flatten()),
         }[task]
 
     def forward(self, x):
@@ -43,8 +49,9 @@ class System(pl.LightningModule):
         return optimizer
 
     def validation_step(self, batch, batch_idx):
-        output = self.model(batch).squeeze()
-        val_loss = self.loss_fn(output, batch['label'].float())
+        output = self.model(batch)
+        
+        val_loss = self.loss_fn(output.squeeze(), batch['label'].float())
         self.log('val_loss', val_loss)
 
         return (output, batch['label'])
@@ -82,13 +89,30 @@ def train(i, train_ds, val_ds, modalities,
         trainer_params={}, prefix=None, task='classification', 
         deterministic=False, eval_every_epoch=False, weights_path=None):
 
+    # num_epochs = {
+    #     ('audio',): 45,
+    #     ('accel',): 25,
+    #     ('video',): 50,
+    #     ('video', 'accel'): 50,
+    #     ('audio', 'video'): 50,
+    #     ('audio', 'video', 'accel'): 50
+    # }
+    # num_epochs = {
+    #     ('audio',): 25,
+    #     ('accel',): 20,
+    #     ('video',): 25,
+    #     ('video', 'accel'): 20,
+    #     ('audio', 'video'): 20,
+    #     ('audio', 'video', 'accel'): 20
+    # }
+
     num_epochs = {
-        ('audio',): 45,
-        ('accel',): 25,
-        ('video',): 50,
-        ('video', 'accel'): 50,
-        ('audio', 'video'): 50,
-        ('audio', 'video', 'accel'): 50
+        ('audio',): 10,
+        ('accel',): 10,
+        ('video',): 15,
+        # ('video', 'accel'): 20,
+        # ('audio', 'video'): 10,
+        ('audio', 'video', 'accel'): 15
     }
 
     # data loaders

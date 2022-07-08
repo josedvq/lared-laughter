@@ -23,7 +23,7 @@ def _get_resnet_cfg():
     return cfg
 
 class SegmentationHead(nn.Module):
-    def __init__(self, output_size):
+    def __init__(self, output_len):
         super(SegmentationHead, self).__init__()
 
         self.head = nn.Sequential(
@@ -33,7 +33,7 @@ class SegmentationHead(nn.Module):
 
         self.upsample = nn.Sequential(
             nn.Flatten(start_dim=2),
-            nn.Upsample(size=(output_size), mode='linear')
+            nn.Upsample(size=(output_len), mode='linear')
         )
 
     def forward(self, x):
@@ -58,9 +58,12 @@ def _make_pretrained_slow(head):
 
     return model
 
-def make_slow_pretrained_body():
-    return _make_pretrained_slow(head=
-        nn.AvgPool3d(kernel_size=(8, 7, 7), stride=(1, 1, 1), padding=(0, 0, 0)))
+def make_slow_pretrained_body(pool=True):
+    if pool:
+        head = nn.AvgPool3d(kernel_size=(8, 7, 7), stride=(1, 1, 1), padding=(0, 0, 0))
+    else:
+        head = nn.Sequential()
+    return _make_pretrained_slow(head=head)
 
     
 def make_slow_pretrained_classifier():
@@ -74,21 +77,6 @@ def make_slow_pretrained_segmenter(output_size=60):
         param.requires_grad = True
 
     return model
-    
-    # cfg = _get_resnet_cfg()
-    # model = PTVResNet(cfg, head=SegmentationHead(output_size))
-
-    # chckpt = torch.load(os.path.join(models_path, 'SLOW_8x8_R50.pyth'))
-
-    # model.load_state_dict(chckpt['model_state'], strict=False)
-    # for param in model.parameters():
-    #     param.requires_grad = False
-
-    # for param in model.head.parameters():
-    #     param.requires_grad = True
-
-    # return model
-
 
 
 def make_slowfast_pretrained_classifier():
