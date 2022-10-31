@@ -73,29 +73,3 @@ class VideoExtractor():
         # logger.info((key, start, end))
 
         return self._get_clip(key, start, end)
-
-        for i_try in range(self._MAX_CONSECUTIVE_FAILURES):
-            
-            video = self.video_path_handler.video_from_path(
-                os.path.join(self.videos_path, f'{key}.mp4'),
-                decoder='pyav'
-            )
-
-            loaded_clip = video.get_clip(0, video._duration)
-            
-            video_is_null = (loaded_clip is None or loaded_clip["video"] is None)
-            
-            if video_is_null:
-                raise Exception(f"Failed to load clip {video.name}, for start={start}, end={end}")
-
-            frames = loaded_clip["video"]
-
-
-            if self.transform is not None:
-                frames = self.transform(frames)
-
-            return frames
-        else:
-            raise RuntimeError(
-                f"Failed to load video {key} after {self._MAX_CONSECUTIVE_FAILURES} retries."
-            )

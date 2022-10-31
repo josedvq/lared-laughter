@@ -110,8 +110,8 @@ def train(i, train_ds, val_ds, modalities,
         ('audio',): 10,
         ('accel',): 10,
         ('video',): 15,
-        # ('video', 'accel'): 20,
-        # ('audio', 'video'): 10,
+        ('video', 'accel'): 15,
+        ('audio', 'video'): 15,
         ('audio', 'video', 'accel'): 15
     }
 
