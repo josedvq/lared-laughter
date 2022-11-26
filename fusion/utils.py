@@ -17,12 +17,12 @@ def _get_index(values):
 
 def make_dataframe(res):
     input_mod_map = {
-        'accel': 'Acceleration',
         'video': 'Video',
         'audio': 'Audio',
-        'video-accel': 'Video+Accel',
         'audio-video': 'Audio+Video',
-        'audio-video-accel': 'Audio+Video+Accel'
+        'accel': 'Acceleration',
+        'video-accel': 'Accel+Video',
+        'audio-video-accel': 'Accel+Audio+Video'
     }
 
     label_mod_map = {
@@ -32,9 +32,8 @@ def make_dataframe(res):
     }
 
     t = {}
-    for input_mod, input_res in res.items():
-        
-
+    for input_mod in input_mod_map.keys():
+        input_res = res[input_mod]
         row = pd.Series(index=_get_index(values=['mean', 'std']), dtype=np.float32)
 
         for train_label_mod, train_label_res in input_res.items():
